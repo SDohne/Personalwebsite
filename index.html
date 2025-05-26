@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebastian Dohne - Ecological Data Scientist</title>
+    <!-- External CSS file for all styling -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome icons for social media and other icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 
+    =================================================================
+    NAVIGATION BAR - Top section with name and navigation links
+    =================================================================
+    -->
+    <nav class="main-navigation">
+        <!-- Left side: Your name and tagline -->
+        <div class="logo-section">
+            <h1 class="main-name">Sebastian Dohne</h1>
+            <p class="main-tagline">Graduate Ecological Data Scientist - currently looking for work</p>
+        </div>
+        
+        <!-- Right side: Navigation menu -->
+        <div class="navigation-links">
+            <a href="#" class="nav-button" data-page="home">Portfolio</a>
+            <a href="#" class="nav-button" data-page="about">About</a>
+            <a href="#" class="nav-button" data-page="training">Training</a>
+            <a href="#" class="nav-button" data-page="publications">Publications</a>
+        </div>
+    </nav>
+
+    <!-- 
+    =================================================================
+    HOME PAGE - Main portfolio with projects
+    =================================================================
+    -->
+    <div id="home" class="page-content active">
+        <div class="content-container">
+            <!-- Profile section with picture and GitHub link -->
+            <div class="profile-header">
+                <!-- Profile picture (you'll need to add your photo file) -->
+                <div class="profile-picture">
+                    <img src="images/mee.png" alt="Sebastian Dohne" class="profile-img">
+                </div>
+                
+                <!-- Centered GitHub link -->
+                <div class="github-showcase">
+                    <a href="https://github.com/airbreather2" class="github-main-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>View My GitHub</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Page title -->
+            <h2 class="page-title">Project Portfolio</h2>
+            
+            <!-- Projects grid - displays all your academic work -->
+            <div class="projects-grid">
+                
+                <!-- PROJECT 1: Most recent work -->
+                <div class="project-card" data-pdf="images/wheat-yield-prediction.pdf" data-github="https://github.com/airbreather2/FinalProject">
+                    <div class="project-info">
+                        <h3 class="project-title">Global Wheat Yield Prediction</h3>
+                        <p class="project-summary">WIP : MSc final project in collaboration with CABI. Applied machine learning and statistical methods to predict global wheat yields using environmental and climatic data.</p>
+                        <div class="project-details">
+                            <span class="project-category">Final Research Project</span>
+                            <span class="project-year">2025</span>
+                        </div>
+                        <!-- GitHub link for this specific project -->
+                        <div class="project-actions">
+                            <button class="action-button pdf-button">View Report</button>
+                            <button class="action-button github-button">View Code</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PROJECT 2 -->
+                <div class="project-card" data-pdf="images/hpc-project.pdf" data-github="https://github.com/airbreather2/CMEECourseWork/tree/main/HPC_sed24_Handin">
+                    <div class="project-info">
+                        <h3 class="project-title">High Performance Computing Project</h3>
+                        <p class="project-summary">Developed and deployed large-scale demographic and ecological simulations using R and high-performance computing. Built deterministic and stochastic models of population dynamics for cluster scripting. Analyzed extinction risk, population variance, and model deviation, and explored ecological neutral theory with custom individual-based models. Demonstrated skills in parallel scripting, stochastic modeling, and ecological simulation workflows</p>
+                        <div class="project-details">
+                            <span class="project-category">Coursework</span>
+                            <span class="project-year">2025</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="action-button github-button">View Code</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PROJECT 3 -->
+                <div class="project-card" data-pdf="images/CMEEMINIPROJECT.pdf" data-github="https://github.com/airbreather2/CMEECourseWork/tree/main/Miniproject">
+                    <div class="project-info">
+                        <h3 class="project-title">Miniproject: Temperature Dependent Bacterial Growth Rate Analysis</h3>
+                        <p class="project-summary">Developed fully reproducible computational workflow comparing cubic, logistic, and Gompertz models across 274 bacterial growth experiments using non-linear least squares regression with stochastic multi-start optimization. Applied Levenberg-Marquardt algorithm, parallel computing, and AICc model selection to analyze temperature-dependent growth patterns (0-37°C). Integrated data processing, model fitting, and visualization in R with tidyverse, demonstrating advanced statistical modeling and information-theoretic approaches for biological systems analysis</p>
+                        <div class="project-details">
+                            <span class="project-category">Mini Project</span>
+                            <span class="project-year">2025</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="action-button pdf-button">View Report</button>
+                            <button class="action-button github-button">View Code</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PROJECT 4 -->
+                <div class="project-card" data-pdf="images/statsinRassessment.pdf" data-github="https://github.com/airbreather2/CMEECourseWork/tree/main/stats_in_r_ASSESSMENT">
+                    <div class="project-info">
+                        <h3 class="project-title">How does tree girth and time period influence budburst in Quercus Robur, accounting for variability across differing sampling locations?</h3>
+                        <p class="project-summary">Applied linear mixed-effects modeling in R to analyze phenological patterns in Quercus robur budburst timing across 2,405 observations from 33 locations. Implemented advanced data wrangling techniques to merge multiple datasets, stratified sampling with reproducible workflows, and hierarchical modeling with random effects to control for spatial variation. Used statistical model comparison to identify tree girth and temporal effects on budburst phenology.</p>
+                        <div class="project-details">
+                            <span class="project-category">Coursework</span>
+                            <span class="project-year">2024</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="action-button pdf-button">View Report</button>
+                            <button class="action-button github-button">View Code</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PROJECT 5 -->
+                <div class="project-card" data-pdf="images/GisBioinformaticsfinalhandin.pdf" data-github="https://github.com/airbreather2/CMEECourseWork/tree/main/Week%208%20-GIS%20">
+                    <div class="project-info">
+                        <h3 class="project-title">PPRV Spillover Risk from Bharal to Vulnerable Species in the Tibetan Plateau</h3>
+                        <p class="project-summary"> Applied phylogenetic analysis and spatial modeling in R to assess PPRV spillover risk from Bharal to endangered species across the Tibetan Plateau. Integrated NCBI sequence data, IUCN range datasets, and NASA population density rasters to identify high-risk transmission zones. Developed GIS-based risk maps revealing critical overlap areas near population centers and appropriate mitigation strategies. Demonstrates expertise in bioinformatics, spatial analysis, conservation genomics, and data-driven wildlife disease modeling.</p>
+                        <div class="project-details">
+                            <span class="project-category">Coursework</span>
+                            <span class="project-year">2024</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="action-button pdf-button">View Report</button>
+                            <button class="action-button github-button">View Code</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PROJECT 6: Oldest project -->
+                <div class="project-card" data-pdf="images/undergradproject.pdf">
+                    <div class="project-info">
+                        <h3 class="project-title">Herring Gull Behavioral Analysis</h3>
+                        <p class="project-summary">Undergraduate research project analyzing the effects of artificial light on parental behavior of nesting Herring Gulls using statistical analysis in R and BORIS software to track behaviour.</p>
+                        <div class="project-details">
+                            <span class="project-category">Research Project</span>
+                            <span class="project-year">2022</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="action-button pdf-button">View Report</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    =================================================================
+    ABOUT PAGE - Personal information and background
+    =================================================================
+    -->
+    <div id="about" class="page-content">
+        <div class="content-container">
+            <div class="about-wrapper">
+                <h2 class="page-title">About Me</h2>
+                <div class="about-layout">
+                    <!-- Main text content -->
+                    <div class="about-text-content">
+                        <p>I am a passionate ecological data scientist currently pursuing my MSc in Living Planet with Computational Methods in Ecology and Evolution at Imperial College London. My work sits at the intersection of ecology, data science, and computational modeling, where I apply advanced statistical and machine learning techniques to understand and predict ecological patterns.</p>
+                        
+                        <p>With a strong foundation in conservation biology from the University of Exeter and professional experience as a Risk Analyst at the Animal and Plant Health Agency, I bring both theoretical knowledge and practical expertise to complex ecological challenges. My research interests span from predicting agricultural yields using satellite data to modeling disease spillover risks in wildlife populations.</p>
+                        
+                        <p>I am proficient in R, Python, and various GIS tools, with particular expertise in statistical modeling, machine learning applications in ecology, and high-performance computing for large-scale ecological simulations. My goal is to leverage data-driven approaches to contribute meaningfully to conservation efforts and sustainable agricultural practices.</p>
+                        
+                        <p>When I'm not analyzing data or building models, you'll find me exploring new computational techniques, contributing to open-source projects, or staying current with the latest developments in ecological modeling and remote sensing applications.</p>
+                    </div>
+                    
+                    <!-- Contact and social links -->
+                    <div class="contact-section">
+                        <h3 class="contact-title">Connect With Me</h3>
+                        <div class="contact-links">
+                            <a href="mailto:sebdohne@gmail.com" class="contact-link">
+                                <i class="fas fa-envelope"></i>
+                                <span>Email: Sebdohne.work@gmail.com</span>
+                            </a>
+                            </a>
+                            <a href="https://www.linkedin.com/in/sebastian-dohne-3a3061209/" class="contact-link" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://orcid.org/0009-0002-4875-6774" class="contact-link" target="_blank">
+                                <i class="fab fa-orcid"></i>
+                                <span>ORCID</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    =================================================================
+    TRAINING PAGE - Certifications and courses
+    =================================================================
+    -->
+<div id="training" class="page-content">
+        <div class="content-container">
+            <div class="training-wrapper">
+                <h2 class="page-title">Training & Certifications</h2>
+                
+                <!-- Academic Qualifications Section -->
+                <div class="training-section">
+                    <h3 class="section-title">Academic & Technical Training</h3>
+                    <div class="training-cards academic-training">
+                        <div class="training-card academic-card">
+                            <h3 class="training-name">Biological Computing Bootcamp</h3>
+                            <p class="training-description">Intensive training in R, Python, Bash, and Jupyter Notebooks for biological data analysis. Developed workflow best practices through collaborative GitHub projects.</p>
+                            <div class="training-info">
+                                <span class="training-date">2024</span>
+                                <span class="training-provider">Imperial College London</span>
+                            </div>
+                        </div>
+                        
+                        <div class="training-card academic-card">
+                            <h3 class="training-name">Advanced Statistical Modeling</h3>
+                            <p class="training-description">Comprehensive training in statistical analysis including maximum likelihood estimation, Bayesian inference, and machine learning applications in ecology.</p>
+                            <div class="training-info">
+                                <span class="training-date">2024</span>
+                                <span class="training-provider">Imperial College London</span>
+                            </div>
+                        </div>
+                        
+                        <div class="training-card academic-card">
+                            <h3 class="training-name">High Performance Computing</h3>
+                            <p class="training-description">Gained practical experience with R scripting, parallel computing, cluster job scheduling (PBS), and workflow optimization for large-scale ecological simulations.</p>
+                            <div class="training-info">
+                                <span class="training-date">2024</span>
+                                <span class="training-provider">Imperial College London</span>
+                            </div>
+                        </div>
+                        
+                        <div class="training-card academic-card">
+                            <h3 class="training-name">GIS & Bioinformatics</h3>
+                            <p class="training-description">Developed skills in GIS using R, bioinformatics, and sequence alignment using tools like NCBI and ORF Finder for ecological and evolutionary data analysis.</p>
+                            <div class="training-info">
+                                <span class="training-date">2024</span>
+                                <span class="training-provider">Imperial College London</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Professional Certifications Section -->
+                <div class="training-section">
+                    <h3 class="section-title">Professional Certifications</h3>
+                    <div class="training-cards professional-training">
+                        <div class="training-card">
+                            <h3 class="training-name">AgilePM Certification</h3>
+                            <p class="training-description">Project management certification focusing on agile methodologies and iterative development processes.</p>
+                            <div class="training-info">
+                                <span class="training-date">2023</span>
+                                <span class="training-provider">APMG International</span>
+                            </div>
+                        </div>
+                        
+                        <div class="training-card">
+                            <h3 class="training-name">Emergency First Aid at Work</h3>
+                            <p class="training-description">Certified in emergency first aid procedures and workplace safety protocols.</p>
+                            <div class="training-info">
+                                <span class="training-date">February 2023</span>
+                                <span class="training-provider">Red Cross</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ <!-- 
+=================================================================
+PUBLICATIONS PAGE - Research publications and contributions
+=================================================================
+-->
+<div id="publications" class="page-content">
+    <div class="content-container">
+        <div class="publications-wrapper">
+            <h2 class="page-title">Publications & Contributions</h2>
+            <div class="publications-list">
+                
+                <!-- Publication 1 - Conference Presentation -->
+                <div class="publication-card project-card" data-pdf="images/echinococcusposter.pdf">
+                    <div class="publication-image">
+                        <img src="images/upsala.png" alt="Echinococcus surveillance conference poster" class="pub-image">
+                    </div>
+                    
+                    <div class="publication-content">
+                        <h3 class="publication-title">Echinococcus multilocularis surveillance in Great Britain: an assessment of the costs and effectiveness of different diagnostic tests</h3>
+                        <p class="publication-authors">S. Dohne, U.K. Weybridge, A. Weybridge, V. Holgan, R. Simons, A. Kent, G. Smith</p>
+                        <p class="publication-description">Conference presentation evaluating the cost-effectiveness of different diagnostic approaches for Echinococcus multilocularis surveillance in Great Britain. Research demonstrated that ELISA may be a more effective and economical diagnostic test compared to current necropsy-based methods, with implications for wildlife disease monitoring programs.</p>
+                        <div class="publication-details">
+                            <span class="publication-type conference-presentation">Conference Presentation</span>
+                            <span class="publication-year">2024</span>
+                            <span class="conference-name">WOAH Collaborating Centre for Risk Analysis & Modelling</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="action-button pdf-button">View Poster</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publication 2 - WOAH Guidelines -->  
+                <div class="publication-card">
+                    <div class="publication-image">
+                        <img src="images/woahguidelines.png" alt="WOAH Guidelines Publication" class="pub-image">
+                    </div>
+                    
+                    <div class="publication-content">
+                        <h3 class="publication-title">Guidelines for Addressing Disease Risks in Wildlife Trade</h3>
+                        <p class="publication-authors">World Organisation for Animal Health (2024)</p>
+                        <p class="publication-description">Served as Editor and Reviewer for this comprehensive 93-page guideline document addressing disease risks in wildlife trade. The publication provides frameworks for risk assessment and management strategies for preventing disease transmission through wildlife commerce.</p>
+                        <div class="publication-details">
+                            <span class="publication-type">Editorial Contribution</span>
+                            <span class="publication-year">2024</span>
+                            <a href="https://doi.org/10.20506/woah.3368" class="publication-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> DOI: 10.20506/woah.3368
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- 
+    =================================================================
+    PDF VIEWER MODAL - Popup window for viewing documents
+    =================================================================
+    -->
+    <div class="document-modal" id="pdfModal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-window">
+            <iframe id="pdfViewer" src="" width="100%" height="90%"></iframe>
+        </div>
+    </div>
+
+    <!-- 
+    =================================================================
+    FOOTER - Copyright information
+    =================================================================
+    -->
+    <footer class="site-footer">
+        &copy; <span id="current-year"></span> Sebastian Dohne. All rights reserved.
+    </footer>
+
+    <!-- JavaScript file for all interactive functionality -->
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,891 @@
+/* 
+=================================================================
+SEBASTIAN DOHNE PROFESSIONAL PORTFOLIO - MAIN STYLESHEET
+=================================================================
+This CSS file controls all the visual styling for the portfolio website.
+It's organized into clear sections for easy understanding and maintenance.
+*/
+
+/* 
+=================================================================
+COLOR THEME - Consistent colors used throughout the site
+=================================================================
+*/
+:root {
+    /* Primary colors - main theme colors */
+    --primary-color: #2c5aa0;        /* Professional blue */
+    --primary-light: #4a7bc8;        /* Lighter blue for hover effects */
+    --primary-dark: #1e3f73;         /* Darker blue for contrast */
+    
+    /* Secondary colors - complementary colors */
+    --secondary-color: #27ae60;       /* Green for success/completion */
+    --secondary-light: #2ecc71;       /* Light green */
+    --accent-color: #3498db;          /* Bright blue for highlights */
+    
+    /* Neutral colors - grays and backgrounds */
+    --text-primary: #2c3e50;          /* Dark gray for main text */
+    --text-secondary: #7f8c8d;        /* Medium gray for secondary text */
+    --text-light: #bdc3c7;            /* Light gray for subtle text */
+    --background-main: #ffffff;        /* White background */
+    --background-light: #f8f9fa;      /* Very light gray background */
+    --background-card: #ffffff;       /* White for card backgrounds */
+    
+    /* Status colors - for different states */
+    --warning-color: #f39c12;         /* Orange for warnings */
+    --error-color: #e74c3c;           /* Red for errors */
+    --success-color: #27ae60;         /* Green for success */
+    
+    /* Shadow and border colors */
+    --shadow-light: rgba(0,0,0,0.1);  /* Light shadow */
+    --shadow-medium: rgba(0,0,0,0.15); /* Medium shadow */
+    --border-light: #ecf0f1;          /* Light border color */
+}
+
+/* 
+=================================================================
+RESET AND BASE STYLES - Foundation styles for all elements
+=================================================================
+*/
+
+/* Remove default browser styling to ensure consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Makes padding and border included in element width */
+}
+
+/* Base styles for the entire website */
+body {
+    font-family: 'Georgia', 'Times New Roman', serif; /* Professional serif font */
+    line-height: 1.6; /* Comfortable reading spacing */
+    color: var(--text-primary);
+    background-color: var(--background-light);
+    font-size: 16px; /* Base font size */
+}
+
+/* Remove default link styling */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Ensure images are responsive */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 
+=================================================================
+NAVIGATION BAR - Top navigation area
+=================================================================
+*/
+
+.main-navigation {
+    background-color: var(--background-main);
+    box-shadow: 0 2px 10px var(--shadow-light);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between; /* Space between logo and nav links */
+    align-items: center;
+    margin-bottom: 2rem;
+    position: sticky; /* Keeps navigation visible when scrolling */
+    top: 0;
+    z-index: 100; /* Ensures nav stays above other content */
+}
+
+/* Left side: Logo/name section */
+.logo-section .main-name {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.2rem;
+}
+
+.logo-section .main-tagline {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Right side: Navigation links */
+.navigation-links {
+    display: flex;
+    gap: 2rem; /* Space between navigation buttons */
+}
+
+/* Individual navigation buttons */
+.nav-button {
+    position: relative;
+    font-weight: 500;
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease; /* Smooth color and background transitions */
+}
+
+/* Animated underline effect for navigation */
+.nav-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%); /* Centers the underline */
+}
+
+/* Hover effects for navigation buttons */
+.nav-button:hover {
+    color: var(--primary-color);
+    background-color: var(--background-light);
+}
+
+.nav-button:hover::after {
+    width: 80%; /* Underline expands on hover */
+}
+
+/* 
+=================================================================
+MAIN CONTENT AREAS - Layout for all page content
+=================================================================
+*/
+
+/* Container that centers and limits width of content */
+.content-container {
+    max-width: 1200px; /* Maximum width for readability */
+    margin: 0 auto; /* Centers the container */
+    padding: 0 2rem; /* Padding on left and right */
+}
+
+/* Hide all pages by default (for single-page app effect) */
+.page-content {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out; /* Fade in animation when page appears */
+}
+
+/* Show the active page */
+.active {
+    display: block;
+}
+
+/* Fade-in animation for page transitions */
+@keyframes fadeIn {
+    from { 
+        opacity: 0;
+        transform: translateY(20px); /* Slides up slightly as it fades in */
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Main page titles */
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* 
+=================================================================
+PROFILE HEADER - Profile picture and GitHub showcase (Home page)
+=================================================================
+*/
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: var(--background-main);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+/* Profile picture section */
+.profile-picture {
+    flex-shrink: 0; /* Prevents picture from shrinking */
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Makes image circular */
+    object-fit: cover; /* Ensures image fits properly in circle */
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 4px 15px var(--shadow-medium);
+}
+
+/* Centered GitHub showcase */
+.github-showcase {
+    flex-grow: 1; /* Takes up remaining space */
+    display: flex;
+    justify-content: center;
+}
+
+.github-main-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    border-radius: 50px; /* Pill-shaped button */
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--shadow-medium);
+}
+
+.github-main-link:hover {
+    transform: translateY(-3px); /* Lifts button on hover */
+    box-shadow: 0 6px 20px var(--shadow-medium);
+    background: linear-gradient(135deg, var(--primary-light), var(--accent-color));
+}
+
+.github-main-link i {
+    font-size: 1.3rem;
+}
+
+/* 
+=================================================================
+PROJECT PORTFOLIO - Grid of project cards (Home page)
+=================================================================
+*/
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Responsive grid */
+    gap: 2rem;
+    margin: 2rem 0 4rem;
+}
+
+/* Individual project cards */
+.project-card {
+    background-color: var(--background-card);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    padding: 2rem;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--primary-color); /* Colored left border */
+    cursor: pointer;
+}
+
+/* Hover effect for project cards */
+.project-card:hover {
+    transform: translateY(-5px); /* Lifts card slightly */
+    box-shadow: 0 8px 25px var(--shadow-medium);
+}
+
+/* Project information section */
+.project-info .project-title {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.project-summary {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+/* Project metadata (category and year) */
+.project-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.project-category {
+    background-color: var(--background-light);
+    color: var(--primary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.project-year {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Action buttons (View Report, View Code) */
+.project-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.action-button {
+    flex: 1; /* Each button takes equal width */
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+/* PDF/Report button styling */
+.pdf-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.pdf-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* GitHub/Code button styling */
+.github-button {
+    background-color: var(--text-primary);
+    color: white;
+}
+
+.github-button:hover {
+    background-color: #1a252f;
+    transform: translateY(-2px);
+}
+
+/* 
+=================================================================
+ABOUT PAGE - Personal information layout
+=================================================================
+*/
+
+.about-wrapper {
+    max-width: 900px;
+    margin: 2rem auto 4rem;
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Text takes 2/3, contact takes 1/3 */
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.about-text-content p {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    text-align: justify; /* Justifies text for professional appearance */
+}
+
+/* Contact section */
+.contact-section .contact-title {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    background-color: var(--background-main);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+}
+
+.contact-link:hover {
+    transform: translateX(5px); /* Slides right on hover */
+    box-shadow: 0 4px 15px var(--shadow-medium);
+    color: var(--primary-color);
+}
+
+.contact-link i {
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+/* 
+=================================================================
+TRAINING PAGE - Certifications and courses layout
+=================================================================
+*/
+
+.training-wrapper {
+    max-width: 1000px;
+    margin: 2rem auto 4rem;
+}
+
+.training-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.training-card {
+    background-color: var(--background-card);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    border-left: 4px solid var(--secondary-color);
+    transition: transform 0.3s ease;
+}
+
+.training-card:hover {
+    transform: translateY(-3px);
+}
+
+.training-card .training-name {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.training-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.training-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.training-date {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.training-provider {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Future training placeholder styling */
+.training-card.future-training {
+    border-left-color: var(--text-light);
+    opacity: 0.7;
+}
+
+/* 
+=================================================================
+PUBLICATIONS PAGE - Research publications layout
+=================================================================
+*/
+
+.publications-wrapper {
+    max-width: 1000px;
+    margin: 2rem auto 4rem;
+}
+
+.publications-list {
+    margin-top: 2rem;
+}
+
+.publication-card {
+    background-color: var(--background-card);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    border-left: 4px solid var(--error-color);
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.conference-presentation {
+    background-color: #e8f5e8;
+    color: var(--secondary-color);
+}
+
+.conference-name {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-left: 1rem;
+}
+
+/* Publication image section */
+.publication-image {
+    flex-shrink: 0;
+    width: 150px;
+}
+
+.pub-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+/* Publication content section */
+.publication-content {
+    flex: 1;
+}
+
+.publication-title {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.publication-authors {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.publication-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.publication-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.publication-type {
+    background-color: #fee;
+    color: var(--error-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.publication-year {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.publication-link {
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.publication-link:hover {
+    color: var(--primary-dark);
+}
+
+.publication-link i {
+    margin-right: 0.5rem;
+}
+
+/* Future publications placeholder */
+.publication-card.future-publication {
+    border-left-color: var(--text-light);
+    opacity: 0.7;
+}
+
+/* Publications without images */
+.publication-card:not(:has(.publication-image)) {
+    display: block;
+}
+
+/* 
+=================================================================
+PDF VIEWER MODAL - Popup for viewing documents
+=================================================================
+*/
+
+.document-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-window {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    max-width: 1000px;
+    background-color: var(--background-main);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+#pdfViewer {
+    border: none;
+    border-radius: 8px;
+}
+
+.modal-close {
+    position: absolute;
+    top: -15px;
+    right: 15px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    transition: color 0.3s;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.modal-close:hover {
+    color: var(--text-light);
+}
+
+/* 
+=================================================================
+FOOTER - Site footer styling
+=================================================================
+*/
+
+.site-footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+/* 
+=================================================================
+RESPONSIVE DESIGN - Adaptations for different screen sizes
+=================================================================
+*/
+
+/* Large tablets and small desktops (1024px and below) */
+@media (max-width: 1024px) {
+    .about-layout {
+        grid-template-columns: 1fr; /* Stack vertically */
+        gap: 2rem;
+    }
+    
+    .contact-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+}
+
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+    /* Navigation adjustments */
+    .main-navigation {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .navigation-links {
+        gap: 1.5rem;
+    }
+    
+    /* Grid adjustments */
+    .projects-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+    
+    .training-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Container padding */
+    .content-container {
+        padding: 0 1rem;
+    }
+    
+    /* Typography adjustments */
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .main-name {
+        font-size: 1.5rem !important;
+    }
+    
+    /* Modal adjustments */
+    .modal-window {
+        width: 95%;
+        height: 85%;
+    }
+    
+    /* Publication cards */
+    .publication-card {
+        flex-direction: column;
+    }
+    
+    .publication-image {
+        width: 100%;
+        max-width: 200px;
+        align-self: center;
+    }
+    
+    .publication-details {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    /* Profile header mobile */
+    .profile-header {
+        padding: 1.5rem;
+    }
+    
+    .profile-img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .github-main-link {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Small mobile phones (480px and below) */
+@media (max-width: 480px) {
+    .main-navigation {
+        padding: 1rem;
+    }
+    
+    .navigation-links {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+    
+    .nav-button {
+        text-align: center;
+        padding: 0.8rem;
+    }
+    
+    .project-actions {
+        flex-direction: column;
+    }
+    
+    .github-main-link {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* 
+=================================================================
+UTILITY CLASSES - Helper classes for common styling needs
+=================================================================
+*/
+
+/* Text alignment utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* Margin utilities */
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+
+/* Visibility utilities */
+.hidden { display: none; }
+.visible { display: block; }
+
+/* Color utilities */
+.text-primary { color: var(--primary-color); }
+.text-secondary { color: var(--text-secondary); }
+.text-success { color: var(--success-color); }
+
+/* 
+=================================================================
+ACCESSIBILITY IMPROVEMENTS
+=================================================================
+*/
+
+/* Focus styles for keyboard navigation */
+.nav-button:focus,
+.action-button:focus,
+.contact-link:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Ensure sufficient color contrast */
+.project-card:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Screen reader only content */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* 
+=================================================================
+PRINT STYLES - How the page looks when printed
+=================================================================
+*/
+
+@media print {
+    .main-navigation,
+    .site-footer,
+    .document-modal {
+        display: none;
+    }
+    
+    .page-content {
+        display: block !important;
+    }
+    
+    .project-card,
+    .training-card,
+    .publication-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}
