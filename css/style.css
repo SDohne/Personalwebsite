@@ -1029,6 +1029,25 @@ Add these styles to your existing CSS file (style.css)
     }
 }
 
+/* Placeholder card styling */
+.placeholder-card {
+    background-color: var(--background-light);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px dashed var(--border-light);
+}
+
+.placeholder-text {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Improved section spacing */
+.training-section {
+    margin-bottom: 4rem; /* Was 3rem */
+}
+
 /* 
 =================================================================
 WORK EXPERIENCE PAGE - Additional CSS Styles
