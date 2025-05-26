@@ -9,6 +9,7 @@ MAIN FEATURES:
 - Page navigation (single-page app)
 - PDF document viewing in modal
 - GitHub link functionality for each project
+- Expandable cards (training, work experience, projects)
 - Smooth animations and transitions
 - Keyboard accessibility
 - Mobile-responsive interactions
@@ -30,8 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navigationButtons = document.querySelectorAll('.nav-button');
     const allPages = document.querySelectorAll('.page-content');
     
-    // Project portfolio elements
-    const projectCards = document.querySelectorAll('.project-card');
+    // Modal elements
     const documentModal = document.getElementById('pdfModal');
     const pdfViewerFrame = document.getElementById('pdfViewer');
     const modalCloseButton = document.querySelector('.modal-close');
@@ -120,34 +120,32 @@ document.addEventListener('DOMContentLoaded', function() {
     
     /*
     =================================================================
-    PROJECT CARD FUNCTIONALITY
+    PDF MODAL AND GITHUB FUNCTIONALITY
     =================================================================
-    This section handles the interactive features of project cards:
-    - Opening PDF documents in a modal viewer
-    - Opening GitHub repositories in new tabs
+    Functions to handle PDF viewing and GitHub repository opening
     */
     
-// Function to open a PDF document in the modal viewer
-function openPdfModal(pdfPath) {
-    if (!pdfPath) {
-        // Show a helpful message if no PDF is available
-        alert('PDF document not yet available for this project. Please check back later or contact me for more information.');
-        return;
+    // Function to open a PDF document in the modal viewer
+    function openPdfModal(pdfPath) {
+        if (!pdfPath) {
+            // Show a helpful message if no PDF is available
+            alert('PDF document not yet available for this project. Please check back later or contact me for more information.');
+            return;
+        }
+        
+        // Show the modal
+        documentModal.style.display = 'flex';
+        
+        // Simple direct PDF loading
+        console.log('Loading PDF from:', pdfPath);
+        pdfViewerFrame.src = pdfPath;
+        
+        // Prevent the background page from scrolling while modal is open
+        document.body.style.overflow = 'hidden';
+        
+        // Add a loading indicator while PDF loads
+        showLoadingIndicator();
     }
-    
-    // Show the modal
-    documentModal.style.display = 'flex';
-    
-// Simple direct PDF loading
-console.log('Loading PDF from:', pdfPath);
-pdfViewerFrame.src = pdfPath;
-    
-    // Prevent the background page from scrolling while modal is open
-    document.body.style.overflow = 'hidden';
-    
-    // Add a loading indicator while PDF loads
-    showLoadingIndicator();
-}
     
     // Function to open a GitHub repository in a new tab
     function openGitHubRepository(githubUrl) {
@@ -181,44 +179,6 @@ pdfViewerFrame.src = pdfPath;
         console.log('PDF loaded');
     }
     
-    // Add event listeners to all project cards
-    projectCards.forEach(function(card) {
-        // Get the PDF and GitHub URLs from the card's data attributes
-        const pdfPath = card.getAttribute('data-pdf');
-        const githubUrl = card.getAttribute('data-github');
-        
-        // Find the action buttons within this card
-        const pdfButton = card.querySelector('.pdf-button');
-        const githubButton = card.querySelector('.github-button');
-        
-        // Add click handler for PDF/Report button
-        if (pdfButton) {
-            pdfButton.addEventListener('click', function(event) {
-                event.stopPropagation(); // Prevent card click from also firing
-                openPdfModal(pdfPath);
-            });
-        }
-        
-        // Add click handler for GitHub/Code button
-        if (githubButton) {
-            githubButton.addEventListener('click', function(event) {
-                event.stopPropagation(); // Prevent card click from also firing
-                openGitHubRepository(githubUrl);
-            });
-        }
-        
-        // Optional: Make entire card clickable to open PDF (for convenience)
-        // Uncomment the lines below if you want this behavior
-        /*
-        card.addEventListener('click', function(event) {
-            // Only trigger if user didn't click on a button
-            if (!event.target.classList.contains('action-button')) {
-                openPdfModal(pdfPath);
-            }
-        });
-        */
-    });
-    
     /*
     =================================================================
     MODAL WINDOW CONTROLS
@@ -247,6 +207,271 @@ pdfViewerFrame.src = pdfPath;
             closePdfModal();
         }
     });
+    
+    /*
+    =================================================================
+    EXPANDABLE INSTITUTION CARDS FUNCTIONALITY
+    =================================================================
+    This section handles the expand/collapse functionality for 
+    institution cards (training, work experience, projects)
+    */
+    
+    // Get all institution cards
+    const institutionCards = document.querySelectorAll('.institution-card');
+    
+    // Function to toggle institution card expansion
+    function toggleInstitutionCard(card) {
+        const modulesContent = card.querySelector('.modules-content');
+        const expandIcon = card.querySelector('.expand-icon i');
+        const isExpanded = card.classList.contains('expanded');
+        
+        if (isExpanded) {
+            // Collapse the card
+            card.classList.remove('expanded');
+            modulesContent.style.display = 'none';
+            expandIcon.style.transform = 'rotate(0deg)';
+            
+            // Smooth scroll to card top when collapsing
+            card.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        } else {
+            // Expand the card
+            card.classList.add('expanded');
+            modulesContent.style.display = 'block';
+            expandIcon.style.transform = 'rotate(180deg)';
+        }
+    }
+    
+    // Add click event listeners to institution cards
+    institutionCards.forEach(card => {
+        const institutionHeader = card.querySelector('.institution-header');
+        
+        if (institutionHeader) {
+            // Make the header clickable
+            institutionHeader.addEventListener('click', function(event) {
+                event.preventDefault();
+                toggleInstitutionCard(card);
+            });
+            
+            // Add keyboard accessibility
+            institutionHeader.setAttribute('tabindex', '0');
+            institutionHeader.setAttribute('role', 'button');
+            institutionHeader.setAttribute('aria-expanded', 'false');
+            
+            // Handle keyboard interactions
+            institutionHeader.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    toggleInstitutionCard(card);
+                    
+                    // Update aria-expanded attribute
+                    const isExpanded = card.classList.contains('expanded');
+                    institutionHeader.setAttribute('aria-expanded', isExpanded);
+                }
+            });
+            
+            // Add hover effect for better user experience
+            institutionHeader.addEventListener('mouseenter', function() {
+                if (!card.classList.contains('expanded')) {
+                    card.style.transform = 'translateY(-2px)';
+                    card.style.boxShadow = '0 6px 20px var(--shadow-medium)';
+                }
+            });
+            
+            institutionHeader.addEventListener('mouseleave', function() {
+                if (!card.classList.contains('expanded')) {
+                    card.style.transform = 'translateY(0)';
+                    card.style.boxShadow = '0 4px 15px var(--shadow-light)';
+                }
+            });
+        }
+    });
+    
+    /*
+    =================================================================
+    WORK EXPERIENCE SPECIFIC FUNCTIONALITY
+    =================================================================
+    Additional functionality specific to work experience cards
+    */
+    
+    // Function to track work experience interactions
+    function trackWorkExperienceInteraction(roleName, action) {
+        console.log(`Work Experience ${action}: ${roleName}`);
+        // You can add analytics tracking here
+    }
+    
+    // Add specific functionality for work cards
+    const workCards = document.querySelectorAll('.work-card');
+    
+    workCards.forEach(card => {
+        const roleName = card.querySelector('.training-name').textContent;
+        const institutionHeader = card.querySelector('.institution-header');
+        
+        if (institutionHeader) {
+            // Add work-specific tracking
+            institutionHeader.addEventListener('click', function() {
+                const isExpanding = !card.classList.contains('expanded');
+                const action = isExpanding ? 'expanded' : 'collapsed';
+                trackWorkExperienceInteraction(roleName, action);
+            });
+            
+            // Add special styling for current role
+            if (card.getAttribute('data-institution') === 'risk-analyst') {
+                card.classList.add('current-role');
+            }
+        }
+    });
+    
+    /*
+    =================================================================
+    PROJECT CARDS SPECIFIC FUNCTIONALITY
+    =================================================================
+    Handle PDF and GitHub actions within collapsible project cards
+    */
+    
+    // Get all project cards
+    const projectCards = document.querySelectorAll('.projects-grid .project-card, .publications-list .project-card');
+    
+    // Function to handle project card interactions
+    function setupProjectCards() {
+        projectCards.forEach(card => {
+            const projectName = card.querySelector('.training-name').textContent;
+            const pdfPath = card.getAttribute('data-pdf');
+            const githubUrl = card.getAttribute('data-github');
+            
+            // Find action buttons within the expanded content
+            const pdfButton = card.querySelector('.pdf-button');
+            const githubButton = card.querySelector('.github-button');
+            
+            // Add click handlers for PDF button
+            if (pdfButton && pdfPath) {
+                pdfButton.addEventListener('click', function(event) {
+                    event.stopPropagation(); // Prevent card from collapsing
+                    openPdfModal(pdfPath);
+                    trackProjectInteraction(projectName, 'pdf_opened');
+                });
+            }
+
+            /*
+=================================================================
+PUBLICATION CARDS SPECIFIC FUNCTIONALITY
+=================================================================
+Handle PDF buttons in publication cards specifically
+*/
+
+// Handle publication cards separately
+const publicationCards = document.querySelectorAll('.publication-card');
+
+publicationCards.forEach(card => {
+    const pdfPath = card.getAttribute('data-pdf');
+    const pdfButton = card.querySelector('.pdf-button, .action-button.pdf-button');
+    
+    if (pdfButton && pdfPath) {
+        pdfButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+            openPdfModal(pdfPath);
+            console.log('Publication PDF opened:', pdfPath);
+        });
+    }
+});
+            
+            // Add click handlers for GitHub button  
+            if (githubButton && githubUrl) {
+                githubButton.addEventListener('click', function(event) {
+                    event.stopPropagation(); // Prevent card from collapsing
+                    openGitHubRepository(githubUrl);
+                    trackProjectInteraction(projectName, 'github_opened');
+                });
+            }
+            
+            // Track project expansion/collapse
+            const institutionHeader = card.querySelector('.institution-header');
+            if (institutionHeader) {
+                institutionHeader.addEventListener('click', function() {
+                    const isExpanding = !card.classList.contains('expanded');
+                    const action = isExpanding ? 'expanded' : 'collapsed';
+                    trackProjectInteraction(projectName, action);
+                });
+            }
+        });
+    }
+    
+    // Function to track project interactions
+    function trackProjectInteraction(projectName, action) {
+        console.log(`Project ${action}: ${projectName}`);
+        // You can add analytics tracking here
+    }
+    
+    // Initialize project cards functionality
+    setupProjectCards();
+    
+    /*
+    =================================================================
+    ENHANCED ANIMATIONS FOR EXPANDABLE CARDS
+    =================================================================
+    Special animations when cards are expanded
+    */
+    
+    // Add staggered animation for project action buttons
+    function animateProjectActions(card) {
+        const actionButtons = card.querySelectorAll('.project-actions .action-button');
+        
+        actionButtons.forEach((button, index) => {
+            // Reset animation
+            button.style.opacity = '0';
+            button.style.transform = 'translateY(10px)';
+            
+            // Stagger the animation
+            setTimeout(() => {
+                button.style.transition = 'all 0.3s ease';
+                button.style.opacity = '1';
+                button.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+    }
+    
+    // Animate module items when they become visible
+    function animateModuleItems(card) {
+        const moduleItems = card.querySelectorAll('.module-item');
+        
+        moduleItems.forEach((item, index) => {
+            // Reset animation
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            
+            // Stagger the animation for each module
+            setTimeout(() => {
+                item.style.transition = 'all 0.4s ease';
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, index * 100); // 100ms delay between each item
+        });
+    }
+    
+    // Update the toggle function to include animations
+    const originalToggleFunction = toggleInstitutionCard;
+    toggleInstitutionCard = function(card) {
+        const wasExpanded = card.classList.contains('expanded');
+        
+        // Call the original toggle function
+        originalToggleFunction(card);
+        
+        // If card was just expanded, animate content
+        if (!wasExpanded && card.classList.contains('expanded')) {
+            // Small delay to ensure the content is visible
+            setTimeout(() => {
+                animateModuleItems(card);
+                
+                // If it's a project card, also animate action buttons
+                if (card.closest('.projects-grid')) {
+                    animateProjectActions(card);
+                }
+            }, 50);
+        }
+    };
     
     /*
     =================================================================
@@ -280,7 +505,7 @@ pdfViewerFrame.src = pdfPath;
         
         // Find all elements that should have scroll animations
         const elementsToAnimate = document.querySelectorAll(
-            '.project-card, .training-card, .publication-card, .about-layout'
+            '.project-card, .training-card, .publication-card, .about-layout, .work-card'
         );
         
         // Set up initial animation state and start observing each element
@@ -294,42 +519,6 @@ pdfViewerFrame.src = pdfPath;
             scrollAnimationObserver.observe(element);
         });
     }
-    
-    /*
-    =================================================================
-    KEYBOARD ACCESSIBILITY
-    =================================================================
-    This section ensures the website works well for users who navigate
-    with keyboards instead of a mouse (important for accessibility).
-    */
-    
-    // Make project cards keyboard-accessible
-    projectCards.forEach(function(card, index) {
-        // Make the card focusable with Tab key
-        card.setAttribute('tabindex', '0');
-        
-        // Handle keyboard interactions
-        card.addEventListener('keypress', function(event) {
-            // Trigger click when Enter or Space is pressed
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                
-                // Get the PDF path and open it
-                const pdfPath = card.getAttribute('data-pdf');
-                openPdfModal(pdfPath);
-            }
-        });
-        
-        // Add visual focus indicator
-        card.addEventListener('focus', function() {
-            card.style.outline = '2px solid var(--primary-color)';
-            card.style.outlineOffset = '2px';
-        });
-        
-        card.addEventListener('blur', function() {
-            card.style.outline = 'none';
-        });
-    });
     
     /*
     =================================================================
@@ -402,283 +591,93 @@ pdfViewerFrame.src = pdfPath;
         // In a production website, you might want to send error reports to a service
         // For now, we'll just log it and continue
     });
-
-    /*
-=================================================================
-EXPANDABLE TRAINING CARDS FUNCTIONALITY
-=================================================================
-Add this code to your existing script.js file, inside the main 
-DOMContentLoaded event listener (after the existing code sections)
-*/
-
-/*
-=================================================================
-EXPANDABLE INSTITUTION CARDS FUNCTIONALITY
-=================================================================
-This section handles the expand/collapse functionality for 
-institution training cards (Imperial College, Exeter, etc.)
-*/
-
-// Get all institution cards
-const institutionCards = document.querySelectorAll('.institution-card');
-
-// Function to toggle institution card expansion
-function toggleInstitutionCard(card) {
-    const modulesContent = card.querySelector('.modules-content');
-    const expandIcon = card.querySelector('.expand-icon i');
-    const isExpanded = card.classList.contains('expanded');
-    
-    if (isExpanded) {
-        // Collapse the card
-        card.classList.remove('expanded');
-        modulesContent.style.display = 'none';
-        expandIcon.style.transform = 'rotate(0deg)';
-        
-        // Smooth scroll to card top when collapsing
-        card.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'start' 
-        });
-    } else {
-        // Expand the card
-        card.classList.add('expanded');
-        modulesContent.style.display = 'block';
-        expandIcon.style.transform = 'rotate(180deg)';
-        
-        // Optional: Close other expanded cards (uncomment if you want accordion behavior)
-        /*
-        institutionCards.forEach(otherCard => {
-            if (otherCard !== card && otherCard.classList.contains('expanded')) {
-                toggleInstitutionCard(otherCard);
-            }
-        });
-        */
-    }
-}
-
-// Add click event listeners to institution cards
-institutionCards.forEach(card => {
-    const institutionHeader = card.querySelector('.institution-header');
-    
-    if (institutionHeader) {
-        // Make the header clickable
-        institutionHeader.addEventListener('click', function(event) {
-            event.preventDefault();
-            toggleInstitutionCard(card);
-        });
-        
-        // Add keyboard accessibility
-        institutionHeader.setAttribute('tabindex', '0');
-        institutionHeader.setAttribute('role', 'button');
-        institutionHeader.setAttribute('aria-expanded', 'false');
-        
-        // Handle keyboard interactions
-        institutionHeader.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                toggleInstitutionCard(card);
-                
-                // Update aria-expanded attribute
-                const isExpanded = card.classList.contains('expanded');
-                institutionHeader.setAttribute('aria-expanded', isExpanded);
-            }
-        });
-        
-        // Add hover effect for better user experience
-        institutionHeader.addEventListener('mouseenter', function() {
-            if (!card.classList.contains('expanded')) {
-                card.style.transform = 'translateY(-2px)';
-                card.style.boxShadow = '0 6px 20px var(--shadow-medium)';
-            }
-        });
-        
-        institutionHeader.addEventListener('mouseleave', function() {
-            if (!card.classList.contains('expanded')) {
-                card.style.transform = 'translateY(0)';
-                card.style.boxShadow = '0 4px 15px var(--shadow-light)';
-            }
-        });
-    }
-});
-
-// Function to expand all institution cards (useful for debugging)
-function expandAllInstitutions() {
-    institutionCards.forEach(card => {
-        if (!card.classList.contains('expanded')) {
-            toggleInstitutionCard(card);
-        }
-    });
-}
-
-// Function to collapse all institution cards
-function collapseAllInstitutions() {
-    institutionCards.forEach(card => {
-        if (card.classList.contains('expanded')) {
-            toggleInstitutionCard(card);
-        }
-    });
-}
-
-// Make functions available for debugging (remove in production)
-window.trainingDebug = {
-    expandAll: expandAllInstitutions,
-    collapseAll: collapseAllInstitutions,
-    toggleCard: toggleInstitutionCard
-};
-
-    // ↓↓↓ ADD THE WORK EXPERIENCE JAVASCRIPT HERE ↓↓↓
     
     /*
     =================================================================
-    WORK EXPERIENCE SPECIFIC FUNCTIONALITY
+    ANALYTICS AND TRACKING
     =================================================================
-    Additional functionality specific to work experience cards
-    */
-
-    // Function to track work experience interactions
-    function trackWorkExperienceInteraction(roleName, action) {
-        console.log(`Work Experience ${action}: ${roleName}`);
-        // You can add analytics tracking here
-    }
-
-    // Add specific functionality for work cards
-    const workCards = document.querySelectorAll('.work-card');
-
-    workCards.forEach(card => {
-        const roleName = card.querySelector('.training-name').textContent;
-        const institutionHeader = card.querySelector('.institution-header');
-        
-        if (institutionHeader) {
-            // Add work-specific tracking
-            institutionHeader.addEventListener('click', function() {
-                const isExpanding = !card.classList.contains('expanded');
-                const action = isExpanding ? 'expanded' : 'collapsed';
-                trackWorkExperienceInteraction(roleName, action);
-            });
-            
-            // Add special styling for current role
-            if (card.getAttribute('data-institution') === 'risk-analyst') {
-                card.classList.add('current-role');
-            }
-        }
-    });
-
-    // Add work experience functions to debug object
-    if (window.portfolioDebug) {
-        window.portfolioDebug.workExperience = {
-            expandAllWork: function() {
-                workCards.forEach(card => {
-                    if (!card.classList.contains('expanded')) {
-                        toggleInstitutionCard(card);
-                    }
-                });
-            },
-            collapseAllWork: function() {
-                workCards.forEach(card => {
-                    if (card.classList.contains('expanded')) {
-                        toggleInstitutionCard(card);
-                    }
-                });
-            }
-        };
-    }
-
-    // ↑↑↑ END OF WORK EXPERIENCE JAVASCRIPT ↑↑↑
-
-/*
-=================================================================
-SMOOTH ANIMATIONS FOR MODULE ITEMS
-=================================================================
-Add smooth animations when modules become visible
-*/
-
-// Animate module items when they become visible
-function animateModuleItems(card) {
-    const moduleItems = card.querySelectorAll('.module-item');
-    
-    moduleItems.forEach((item, index) => {
-        // Reset animation
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(20px)';
-        
-        // Stagger the animation for each module
-        setTimeout(() => {
-            item.style.transition = 'all 0.4s ease';
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
-        }, index * 100); // 100ms delay between each item
-    });
-}
-
-// Update the toggle function to include animations
-const toggleInstitutionCardOriginal = toggleInstitutionCard;
-toggleInstitutionCard = function(card) {
-    const wasExpanded = card.classList.contains('expanded');
-    
-    // Call the original toggle function
-    toggleInstitutionCardOriginal(card);
-    
-    // If card was just expanded, animate the module items
-    if (!wasExpanded && card.classList.contains('expanded')) {
-        // Small delay to ensure the content is visible
-        setTimeout(() => {
-            animateModuleItems(card);
-        }, 50);
-    }
-};
-
-/*
-=================================================================
-ANALYTICS TRACKING FOR INSTITUTION INTERACTIONS
-=================================================================
-Track which institutions users are most interested in
-*/
-
-function trackInstitutionInteraction(institutionName, action) {
-    console.log(`Institution ${action}: ${institutionName}`);
-    // You can add Google Analytics or other tracking here
-    // Example: gtag('event', 'institution_' + action, { institution: institutionName });
-}
-
-// Add tracking to institution cards
-institutionCards.forEach(card => {
-    const institutionName = card.querySelector('.training-name').textContent;
-    const institutionHeader = card.querySelector('.institution-header');
-    
-    if (institutionHeader) {
-        institutionHeader.addEventListener('click', function() {
-            const isExpanding = !card.classList.contains('expanded');
-            const action = isExpanding ? 'expanded' : 'collapsed';
-            trackInstitutionInteraction(institutionName, action);
-        });
-    }
-});
-    
-    /*
-    =================================================================
-    ANALYTICS AND TRACKING (Optional)
-    =================================================================
-    This section can be used to track how visitors use your portfolio.
-    Currently commented out, but you can enable it if you add analytics.
+    Functions for tracking user interactions (for future analytics)
     */
     
     // Function to track page views (for analytics)
     function trackPageView(pageName) {
-        // Example: Google Analytics tracking
-        // if (typeof gtag !== 'undefined') {
-        //     gtag('config', 'GA_MEASUREMENT_ID', {
-        //         page_title: pageName,
-        //         page_location: window.location.href
-        //     });
-        // }
-        
         console.log('Page viewed: ' + pageName);
+        // You can add Google Analytics tracking here
     }
     
-    // Function to track when PDFs are opened (to see which projects get attention)
-    function trackPdfOpen(projectName) {
-        console.log('PDF opened: ' + projectName);
-        // You could send this data to Google Analytics or another service
+    // Function to track institution interactions
+    function trackInstitutionInteraction(institutionName, action) {
+        console.log(`Institution ${action}: ${institutionName}`);
+        // You can add analytics tracking here
+    }
+    
+    // Add tracking to institution cards
+    institutionCards.forEach(card => {
+        const institutionName = card.querySelector('.training-name').textContent;
+        const institutionHeader = card.querySelector('.institution-header');
+        
+        if (institutionHeader) {
+            institutionHeader.addEventListener('click', function() {
+                const isExpanding = !card.classList.contains('expanded');
+                const action = isExpanding ? 'expanded' : 'collapsed';
+                trackInstitutionInteraction(institutionName, action);
+            });
+        }
+    });
+    
+    /*
+    =================================================================
+    HELPFUL FUNCTIONS FOR MAINTENANCE AND DEBUGGING
+    =================================================================
+    These functions can be called from the browser console for testing
+    and maintenance purposes.
+    */
+    
+    // Function to expand all institution cards (useful for debugging)
+    function expandAllInstitutions() {
+        institutionCards.forEach(card => {
+            if (!card.classList.contains('expanded')) {
+                toggleInstitutionCard(card);
+            }
+        });
+    }
+    
+    // Function to collapse all institution cards
+    function collapseAllInstitutions() {
+        institutionCards.forEach(card => {
+            if (card.classList.contains('expanded')) {
+                toggleInstitutionCard(card);
+            }
+        });
+    }
+    
+    // Function to filter projects by category (ready for future use)
+    function filterProjectsByCategory(category) {
+        projectCards.forEach(card => {
+            const projectCategory = card.querySelector('.project-category').textContent.toLowerCase();
+            if (category === 'all' || projectCategory.includes(category.toLowerCase())) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    
+    // Function to search projects by title or description (ready for future use)
+    function searchProjects(searchTerm) {
+        const term = searchTerm.toLowerCase();
+        
+        projectCards.forEach(card => {
+            const title = card.querySelector('.training-name').textContent.toLowerCase();
+            const description = card.querySelector('.institution-description').textContent.toLowerCase();
+            const summary = card.querySelector('.project-summary')?.textContent.toLowerCase() || '';
+            
+            if (title.includes(term) || description.includes(term) || summary.includes(term)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
     }
     
     /*
@@ -689,22 +688,80 @@ institutionCards.forEach(card => {
     
     // Log that everything loaded successfully (remove this in production)
     console.log('Portfolio website initialized successfully!');
-    console.log('Features loaded: Navigation, PDF viewer, GitHub links, Animations, Accessibility');
+    console.log('Features loaded: Navigation, PDF viewer, GitHub links, Expandable cards, Animations, Accessibility');
     
-    /*
-    =================================================================
-    HELPFUL FUNCTIONS FOR MAINTENANCE
-    =================================================================
-    These functions can be called from the browser console for testing
-    and maintenance purposes.
-    */
-    
-    // Make some functions available globally for testing
+    // Make functions available globally for testing and debugging
     window.portfolioDebug = {
+        // Navigation functions
         switchToPage: switchToPage,
+        trackPageView: trackPageView,
+        
+        // Modal functions
         openPdfModal: openPdfModal,
         closePdfModal: closePdfModal,
-        trackPageView: trackPageView
+        
+        // Training/Institution functions
+        expandAllInstitutions: expandAllInstitutions,
+        collapseAllInstitutions: collapseAllInstitutions,
+        toggleCard: toggleInstitutionCard,
+        
+        // Work experience functions
+        expandAllWork: function() {
+            const workCards = document.querySelectorAll('.work-card');
+            workCards.forEach(card => {
+                if (!card.classList.contains('expanded')) {
+                    toggleInstitutionCard(card);
+                }
+            });
+        },
+        collapseAllWork: function() {
+            const workCards = document.querySelectorAll('.work-card');
+            workCards.forEach(card => {
+                if (card.classList.contains('expanded')) {
+                    toggleInstitutionCard(card);
+                }
+            });
+        },
+        
+        // Project functions
+        expandAllProjects: function() {
+            projectCards.forEach(card => {
+                if (!card.classList.contains('expanded')) {
+                    toggleInstitutionCard(card);
+                }
+            });
+        },
+        collapseAllProjects: function() {
+            projectCards.forEach(card => {
+                if (card.classList.contains('expanded')) {
+                    toggleInstitutionCard(card);
+                }
+            });
+        },
+        filterByCategory: filterProjectsByCategory,
+        searchProjects: searchProjects,
+        
+        // Utility functions
+        getProjectStats: function() {
+            const stats = {
+                total: projectCards.length,
+                withPdf: 0,
+                withGithub: 0,
+                withBoth: 0
+            };
+            
+            projectCards.forEach(card => {
+                const hasPdf = card.getAttribute('data-pdf');
+                const hasGithub = card.getAttribute('data-github');
+                
+                if (hasPdf) stats.withPdf++;
+                if (hasGithub) stats.withGithub++;
+                if (hasPdf && hasGithub) stats.withBoth++;
+            });
+            
+            console.table(stats);
+            return stats;
+        }
     };
     
 }); // End of main DOMContentLoaded event listener

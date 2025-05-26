@@ -15,22 +15,22 @@
     NAVIGATION BAR - Top section with name and navigation links
     =================================================================
     -->
-<nav class="main-navigation">
-    <!-- Left side: Your name and tagline -->
-    <div class="logo-section">
-        <h1 class="main-name">Sebastian Dohne</h1>
-        <p class="main-tagline">Graduate Ecological Data Scientist - currently looking for work</p>
-    </div>
-    
-    <!-- Right side: Navigation menu -->
-    <div class="navigation-links">
-        <a href="#" class="nav-button" data-page="home">Portfolio</a>
-        <a href="#" class="nav-button" data-page="about">About</a>
-        <a href="#" class="nav-button" data-page="work-experience">Work Experience</a>
-        <a href="#" class="nav-button" data-page="training">Qualifications</a>
-        <a href="#" class="nav-button" data-page="publications">Publications</a>
-    </div>
-</nav>
+    <nav class="main-navigation">
+        <!-- Left side: Your name and tagline -->
+        <div class="logo-section">
+            <h1 class="main-name">Sebastian Dohne</h1>
+            <p class="main-tagline">Graduate Ecological Data Scientist - currently looking for work</p>
+        </div>
+        
+        <!-- Right side: Navigation menu -->
+        <div class="navigation-links">
+            <a href="#" class="nav-button" data-page="home">Portfolio</a>
+            <a href="#" class="nav-button" data-page="about">About</a>
+            <a href="#" class="nav-button" data-page="work-experience">Work Experience</a>
+            <a href="#" class="nav-button" data-page="training">Qualifications</a>
+            <a href="#" class="nav-button" data-page="publications">Publications</a>
+        </div>
+    </nav>
 
     <!-- 
     =================================================================
@@ -62,96 +62,162 @@
             <div class="projects-grid">
                 
                 <!-- PROJECT 1: Most recent work -->
-                <div class="project-card" data-pdf="images/wheat-yield-prediction.pdf" data-github="https://github.com/airbreather2/FinalProject">
-                    <div class="project-info">
-                        <h3 class="project-title">Global Wheat Yield Prediction</h3>
-                        <p class="project-summary">WIP : MSc final project in collaboration with CABI. Applied machine learning and statistical methods to predict global wheat yields using environmental and climatic data.</p>
-                        <div class="project-details">
-                            <span class="project-category">Final Research Project</span>
-                            <span class="project-year">2025</span>
+                <div class="project-card institution-card" data-pdf="images/wheat-yield-prediction.pdf" data-github="https://github.com/airbreather2/FinalProject" data-institution="wheat-project">
+                    <div class="institution-header">
+                        <div class="institution-info">
+                            <h3 class="training-name">Global Wheat Yield Prediction</h3>
+                            <p class="institution-description">MSc final project in collaboration with CABI</p>
+                            <div class="project-details">
+                                <span class="project-category">Final Research Project</span>
+                                <span class="project-year">2025</span>
+                            </div>
                         </div>
-                        <!-- GitHub link for this specific project -->
-                        <div class="project-actions">
-                            <button class="action-button pdf-button">View Report</button>
-                            <button class="action-button github-button">View Code</button>
+                        <div class="expand-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Expandable Project Details -->
+                    <div class="modules-content" style="display: none;">
+                        <div class="project-expanded-content">
+                            <p class="project-summary">WIP: Applied machine learning and statistical methods to predict global wheat yields using environmental and climatic data. Implemented multivariate regression and various ML techniques to identify yield-limiting factors and predict attainable yields.</p>
+                            <div class="project-actions">
+                                <button class="action-button pdf-button">View Report</button>
+                                <button class="action-button github-button">View Code</button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- PROJECT 2 -->
-                <div class="project-card" data-pdf="images/hpc-project.pdf" data-github="https://github.com/airbreather2/CMEECourseWork/tree/main/HPC_sed24_Handin">
-                    <div class="project-info">
-                        <h3 class="project-title">High Performance Computing Project</h3>
-                        <p class="project-summary">Developed and deployed large-scale demographic and ecological simulations using R and high-performance computing. Built deterministic and stochastic models of population dynamics for cluster scripting. Analyzed extinction risk, population variance, and model deviation, and explored ecological neutral theory with custom individual-based models. Demonstrated skills in parallel scripting, stochastic modeling, and ecological simulation workflows</p>
-                        <div class="project-details">
-                            <span class="project-category">Coursework</span>
-                            <span class="project-year">2025</span>
+                <div class="project-card institution-card" data-pdf="images/hpc-project.pdf" data-github="https://github.com/airbreather2/CMEECourseWork/tree/main/HPC_sed24_Handin" data-institution="hpc-project">
+                    <div class="institution-header">
+                        <div class="institution-info">
+                            <h3 class="training-name">High Performance Computing Project</h3>
+                            <p class="institution-description">Large-scale demographic and ecological simulations</p>
+                            <div class="project-details">
+                                <span class="project-category">Coursework</span>
+                                <span class="project-year">2025</span>
+                            </div>
                         </div>
-                        <div class="project-actions">
-                            <button class="action-button github-button">View Code</button>
+                        <div class="expand-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="modules-content" style="display: none;">
+                        <div class="project-expanded-content">
+                            <p class="project-summary">Developed and deployed large-scale demographic and ecological simulations using R and high-performance computing. Built deterministic and stochastic models of population dynamics for cluster scripting. Analyzed extinction risk, population variance, and model deviation, and explored ecological neutral theory with custom individual-based models.</p>
+                            <div class="project-actions">
+                                <button class="action-button github-button">View Code</button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- PROJECT 3 -->
-                <div class="project-card" data-pdf="images/CMEEMINIPROJECT.pdf" data-github="https://github.com/airbreather2/CMEECourseWork/tree/main/Miniproject">
-                    <div class="project-info">
-                        <h3 class="project-title">Miniproject: Temperature Dependent Bacterial Growth Rate Analysis</h3>
-                        <p class="project-summary">Developed fully reproducible computational workflow comparing cubic, logistic, and Gompertz models across 274 bacterial growth experiments using non-linear least squares regression with stochastic multi-start optimization. Applied Levenberg-Marquardt algorithm, parallel computing, and AICc model selection to analyze temperature-dependent growth patterns (0-37°C). Integrated data processing, model fitting, and visualization in R with tidyverse, demonstrating advanced statistical modeling and information-theoretic approaches for biological systems analysis</p>
-                        <div class="project-details">
-                            <span class="project-category">Mini Project</span>
-                            <span class="project-year">2025</span>
+                <div class="project-card institution-card" data-pdf="images/CMEEMINIPROJECT.pdf" data-github="https://github.com/airbreather2/CMEECourseWork/tree/main/Miniproject" data-institution="miniproject">
+                    <div class="institution-header">
+                        <div class="institution-info">
+                            <h3 class="training-name">Temperature Dependent Bacterial Growth Analysis</h3>
+                            <p class="institution-description">Miniproject: Computational workflow for bacterial growth modeling</p>
+                            <div class="project-details">
+                                <span class="project-category">Mini Project</span>
+                                <span class="project-year">2025</span>
+                            </div>
                         </div>
-                        <div class="project-actions">
-                            <button class="action-button pdf-button">View Report</button>
-                            <button class="action-button github-button">View Code</button>
+                        <div class="expand-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="modules-content" style="display: none;">
+                        <div class="project-expanded-content">
+                            <p class="project-summary">Developed fully reproducible computational workflow comparing cubic, logistic, and Gompertz models across 274 bacterial growth experiments using non-linear least squares regression with stochastic multi-start optimization. Applied Levenberg-Marquardt algorithm, parallel computing, and AICc model selection to analyze temperature-dependent growth patterns.</p>
+                            <div class="project-actions">
+                                <button class="action-button pdf-button">View Report</button>
+                                <button class="action-button github-button">View Code</button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- PROJECT 4 -->
-                <div class="project-card" data-pdf="images/statsinRassessment.pdf" data-github="https://github.com/airbreather2/CMEECourseWork/tree/main/stats_in_r_ASSESSMENT">
-                    <div class="project-info">
-                        <h3 class="project-title">How does tree girth and time period influence budburst in Quercus Robur, accounting for variability across differing sampling locations?</h3>
-                        <p class="project-summary">Applied linear mixed-effects modeling in R to analyze phenological patterns in Quercus robur budburst timing across 2,405 observations from 33 locations. Implemented advanced data wrangling techniques to merge multiple datasets, stratified sampling with reproducible workflows, and hierarchical modeling with random effects to control for spatial variation. Used statistical model comparison to identify tree girth and temporal effects on budburst phenology.</p>
-                        <div class="project-details">
-                            <span class="project-category">Coursework</span>
-                            <span class="project-year">2024</span>
+                <div class="project-card institution-card" data-pdf="images/statsinRassessment.pdf" data-github="https://github.com/airbreather2/CMEECourseWork/tree/main/stats_in_r_ASSESSMENT" data-institution="quercus-project">
+                    <div class="institution-header">
+                        <div class="institution-info">
+                            <h3 class="training-name">Quercus Robur Budburst Analysis</h3>
+                            <p class="institution-description">Tree girth and temporal influences on phenological patterns</p>
+                            <div class="project-details">
+                                <span class="project-category">Coursework</span>
+                                <span class="project-year">2024</span>
+                            </div>
                         </div>
-                        <div class="project-actions">
-                            <button class="action-button pdf-button">View Report</button>
-                            <button class="action-button github-button">View Code</button>
+                        <div class="expand-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="modules-content" style="display: none;">
+                        <div class="project-expanded-content">
+                            <p class="project-summary">Applied linear mixed-effects modeling in R to analyze phenological patterns in Quercus robur budburst timing across 2,405 observations from 33 locations. Implemented advanced data wrangling techniques, stratified sampling with reproducible workflows, and hierarchical modeling with random effects to control for spatial variation.</p>
+                            <div class="project-actions">
+                                <button class="action-button pdf-button">View Report</button>
+                                <button class="action-button github-button">View Code</button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- PROJECT 5 -->
-                <div class="project-card" data-pdf="images/GisBioinformaticsfinalhandin.pdf" data-github="https://github.com/airbreather2/CMEECourseWork/tree/main/Week%208%20-GIS%20">
-                    <div class="project-info">
-                        <h3 class="project-title">PPRV Spillover Risk from Bharal to Vulnerable Species in the Tibetan Plateau</h3>
-                        <p class="project-summary"> Applied phylogenetic analysis and spatial modeling in R to assess PPRV spillover risk from Bharal to endangered species across the Tibetan Plateau. Integrated NCBI sequence data, IUCN range datasets, and NASA population density rasters to identify high-risk transmission zones. Developed GIS-based risk maps revealing critical overlap areas near population centers and appropriate mitigation strategies. Demonstrates expertise in bioinformatics, spatial analysis, conservation genomics, and data-driven wildlife disease modeling.</p>
-                        <div class="project-details">
-                            <span class="project-category">Coursework</span>
-                            <span class="project-year">2024</span>
+                <div class="project-card institution-card" data-pdf="images/GisBioinformaticsfinalhandin.pdf" data-github="https://github.com/airbreather2/CMEECourseWork/tree/main/Week%208%20-GIS%20" data-institution="pprv-project">
+                    <div class="institution-header">
+                        <div class="institution-info">
+                            <h3 class="training-name">PPRV Spillover Risk Assessment</h3>
+                            <p class="institution-description">Disease spillover modeling in the Tibetan Plateau</p>
+                            <div class="project-details">
+                                <span class="project-category">Coursework</span>
+                                <span class="project-year">2024</span>
+                            </div>
                         </div>
-                        <div class="project-actions">
-                            <button class="action-button pdf-button">View Report</button>
-                            <button class="action-button github-button">View Code</button>
+                        <div class="expand-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="modules-content" style="display: none;">
+                        <div class="project-expanded-content">
+                            <p class="project-summary">Applied phylogenetic analysis and spatial modeling in R to assess PPRV spillover risk from Bharal to endangered species across the Tibetan Plateau. Integrated NCBI sequence data, IUCN range datasets, and NASA population density rasters to identify high-risk transmission zones and develop GIS-based risk maps.</p>
+                            <div class="project-actions">
+                                <button class="action-button pdf-button">View Report</button>
+                                <button class="action-button github-button">View Code</button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- PROJECT 6: Oldest project -->
-                <div class="project-card" data-pdf="images/undergradproject.pdf">
-                    <div class="project-info">
-                        <h3 class="project-title">Herring Gull Behavioral Analysis</h3>
-                        <p class="project-summary">Undergraduate research project analyzing the effects of artificial light on parental behavior of nesting Herring Gulls using statistical analysis in R and BORIS software to track behaviour.</p>
-                        <div class="project-details">
-                            <span class="project-category">Research Project</span>
-                            <span class="project-year">2022</span>
+                <div class="project-card institution-card" data-pdf="images/undergradproject.pdf" data-institution="herring-gull-project">
+                    <div class="institution-header">
+                        <div class="institution-info">
+                            <h3 class="training-name">Herring Gull Behavioral Analysis</h3>
+                            <p class="institution-description">Effects of artificial light on parental behavior</p>
+                            <div class="project-details">
+                                <span class="project-category">Research Project</span>
+                                <span class="project-year">2022</span>
+                            </div>
                         </div>
-                        <div class="project-actions">
-                            <button class="action-button pdf-button">View Report</button>
+                        <div class="expand-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="modules-content" style="display: none;">
+                        <div class="project-expanded-content">
+                            <p class="project-summary">Undergraduate research project analyzing the effects of artificial light on parental behavior of nesting Herring Gulls using statistical analysis in R and BORIS software for behavioral data recording and tabulation.</p>
+                            <div class="project-actions">
+                                <button class="action-button pdf-button">View Report</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -174,7 +240,6 @@
                         <p>I am a passionate ecological data scientist currently pursuing my MSc in Living Planet with Computational Methods in Ecology and Evolution at Imperial College London. My work sits at the intersection of ecology, data science, and computational modeling, where I apply advanced statistical and machine learning techniques to understand and predict ecological patterns.</p>
                                             
                         <p>I am proficient in R, Python, and various GIS tools, with particular expertise in statistical modeling, machine learning applications in ecology, and high-performance computing for large-scale ecological simulations. My goal is to leverage data-driven approaches to contribute meaningfully to conservation efforts and sustainable agricultural practices.</p>
-                        
                     </div>
                     
                     <!-- Contact and social links -->
@@ -184,7 +249,6 @@
                             <a href="mailto:sebdohne@gmail.com" class="contact-link">
                                 <i class="fas fa-envelope"></i>
                                 <span>Email: Sebdohne.work@gmail.com</span>
-                            </a>
                             </a>
                             <a href="https://www.linkedin.com/in/sebastian-dohne-3a3061209/" class="contact-link" target="_blank">
                                 <i class="fab fa-linkedin"></i>
@@ -203,332 +267,328 @@
 
     <!-- 
     =================================================================
+    WORK EXPERIENCE PAGE
+    =================================================================
+    -->
+    <div id="work-experience" class="page-content">
+        <div class="content-container">
+            <div class="work-wrapper">
+                <h2 class="page-title">Work Experience</h2>
+                
+                <!-- Professional Experience Section -->
+                <div class="work-section">
+                    <h3 class="section-title">Professional Experience</h3>
+                    <div class="work-cards">
+                        
+                        <!-- Current Role: Risk Analyst -->
+                        <div class="work-card institution-card" data-institution="risk-analyst">
+                            <div class="institution-header">
+                                <div class="institution-info">
+                                    <h3 class="training-name">Risk Analyst</h3>
+                                    <p class="institution-description">Biomathematical Risk Research Department, Epidemiological Sciences</p>
+                                    <div class="work-details">
+                                        <span class="company-name">Animal and Plant Health Agency</span>
+                                        <span class="work-location">New Haw, UK</span>
+                                    </div>
+                                    <div class="training-info">
+                                        <span class="training-date">2023 – 2024</span>
+                                    </div>
+                                </div>
+                                <div class="expand-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Expandable Job Details Section -->
+                            <div class="modules-content" style="display: none;">
+                                <div class="modules-grid">
+                                    <div class="module-item">
+                                        <h4 class="module-title">Risk Assessment & Analysis</h4>
+                                        <p class="module-description">Develop qualitative risk assessments and support data collection for quantitative risk assessments. Projects inform UK policy and trade by assessing risks to animal health due to trade in various commodities and respond to perceived threats from pathogen incursions affecting livestock, pets, and wildlife.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">Scientific Literature Review & Reporting</h4>
+                                        <p class="module-description">Perform effective literature reviews for inbound projects and scientific report writing. Effectively convey qualitative and quantitative data for risk assessment and provide internal review of projects for quality assurance.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">Stakeholder Communication & Project Management</h4>
+                                        <p class="module-description">Coordinate with colleagues, stakeholders, APHA and DEFRA staff. Organize meetings and presentations to discuss project parameters and updates. Liaise with parties holding information necessary for risk assessment including policymakers, collaborators, and specialists.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">Research & Professional Development</h4>
+                                        <p class="module-description">Contribute to future project proposals and attend scientific conferences and seminars. Network with members of other organizations and academic institutions to spread awareness of departmental work and facilitate collaborations.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">Key Achievements</h4>
+                                        <p class="module-description">• Presented poster at SVEPM conference in Uppsala, Sweden on Echinococcus Multilocularis surveillance methods<br>• Named author for WOAH project guidelines to reduce risks in wild animal trade<br>• Provide expertise during notifiable disease outbreaks</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">Project Types Managed</h4>
+                                        <p class="module-description">Risk and economic analyses, Hazard identifications, policy-informing assessments for national and international animal health and food safety issues, reactive threat response projects.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Previous Role: Scientific Assistant -->
+                        <div class="work-card institution-card" data-institution="scientific-assistant">
+                            <div class="institution-header">
+                                <div class="institution-info">
+                                    <h3 class="training-name">Scientific Assistant</h3>
+                                    <p class="institution-description">CFT/IFAT Laboratory, Serology Department</p>
+                                    <div class="work-details">
+                                        <span class="company-name">Animal and Plant Health Agency</span>
+                                        <span class="work-location">New Haw, UK</span>
+                                    </div>
+                                    <div class="training-info">
+                                        <span class="training-date">2022 – 2023</span>
+                                        <span class="training-provider">Laboratory Role</span>
+                                    </div>
+                                </div>
+                                <div class="expand-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Expandable Job Details Section -->
+                            <div class="modules-content" style="display: none;">
+                                <div class="modules-grid">
+                                    <div class="module-item">
+                                        <h4 class="module-title">Diagnostic Testing</h4>
+                                        <p class="module-description">Performed various diagnostic tests for zoonotic diseases including PCR, iELISA, CFT, and IFAT on submitted samples. Maintained and updated Standard Operating Procedures (SOPs) for diagnostic tests to ensure accuracy and compliance.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">Laboratory Coordination</h4>
+                                        <p class="module-description">Communicated and coordinated between laboratories and departments to ensure SOPs were followed. Suggested improvements to optimize time-effective delivery of client sample results while maintaining quality standards.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">Outbreak Response</h4>
+                                        <p class="module-description">Worked on bird flu outbreak response, preparing suspected positive samples for real-time PCR. Demonstrated consistency under time pressures and sudden high short-term workloads during disease outbreak scenarios.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">Client Communication</h4>
+                                        <p class="module-description">Worked in front-facing office performing professional customer communication. Managed client inquiries and provided updates on sample processing and results delivery timelines.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    =================================================================
     TRAINING PAGE - Certifications and courses
     =================================================================
     -->
-<!-- 
-=================================================================
-TRAINING PAGE - Updated with expandable institution cards
-=================================================================
--->
-<div id="training" class="page-content">
-    <div class="content-container">
-        <div class="training-wrapper">
-            <h2 class="page-title">Training & Certifications</h2>
-            
-            <!-- Academic Qualifications Section -->
-            <div class="training-section">
-                <h3 class="section-title">Academic Qualifications</h3>
-                <div class="training-cards academic-training">
-                    
-                    <!-- Imperial College London - Expandable Card -->
-                    <div class="training-card institution-card" data-institution="imperial">
-                        <div class="institution-header">
-                            <div class="institution-info">
-                                <h3 class="training-name">Imperial College London</h3>
-                                <p class="institution-description">MSc in Living Planet with Computational Methods in Ecology and Evolution</p>
-                                <div class="training-info">
-                                    <span class="training-date">2024 - Present</span>
-                                    <span class="training-provider">Predicted First Class Honours</span>
-                                </div>
-                            </div>
-                            <div class="expand-icon">
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                        </div>
-                        
-                        <!-- Expandable Modules Section -->
-                        <div class="modules-content" style="display: none;">
-                            <div class="modules-grid">
-                                <div class="module-item">
-                                    <h4 class="module-title">Biological Computing Bootcamp</h4>
-                                    <p class="module-description">Intensive training in R, Python, Bash, and Jupyter Notebooks for biological data analysis. Developed workflow best practices through collaborative GitHub projects.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">Advanced Statistical Modeling</h4>
-                                    <p class="module-description">Comprehensive training in statistical analysis including maximum likelihood estimation, Bayesian inference, and machine learning applications in ecology.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">High Performance Computing</h4>
-                                    <p class="module-description">Gained practical experience with R scripting, parallel computing, cluster job scheduling (PBS), and workflow optimization for large-scale ecological simulations.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">GIS & Bioinformatics</h4>
-                                    <p class="module-description">Developed skills in GIS using R, bioinformatics, and sequence alignment using tools like NCBI and ORF Finder for ecological and evolutionary data analysis.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">Statistics in R & Mathematical Modelling</h4>
-                                    <p class="module-description">Practical experience in statistical analysis and mathematical modelling to interpret ecological and evolutionary data using maximum likelihood estimation and Bayesian inference.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">Advanced Data Science</h4>
-                                    <p class="module-description">Covered foundational machine learning for model fitting and data analysis in ecological contexts.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- University of Exeter - Expandable Card -->
-                    <div class="training-card institution-card" data-institution="exeter">
-                        <div class="institution-header">
-                            <div class="institution-info">
-                                <h3 class="training-name">University of Exeter</h3>
-                                <p class="institution-description">BSc in Conservation Biology and Ecology</p>
-                                <div class="training-info">
-                                    <span class="training-date">2019 - 2022</span>
-                                    <span class="training-provider">Upper Second-Class Honours</span>
-                                </div>
-                            </div>
-                            <div class="expand-icon">
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                        </div>
-                        
-                        <!-- Expandable Modules Section -->
-                        <div class="modules-content" style="display: none;">
-                            <div class="modules-grid">
-                                <div class="module-item">
-                                    <h4 class="module-title">Research Project</h4>
-                                    <p class="module-description">"Analysis of the Effects of Artificial Light on Parental Behaviour of Nesting Herring Gulls" - Literature review, statistical analysis in R, and behavioral data recording.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">Conservation Principles</h4>
-                                    <p class="module-description">Core principles of biodiversity conservation, habitat management, and species protection strategies.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">Ecological Statistics</h4>
-                                    <p class="module-description">Statistical methods for analyzing ecological data, including ANOVA, regression analysis, and multivariate statistics.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">Field Ecology Methods</h4>
-                                    <p class="module-description">Hands-on experience with field sampling techniques, species identification, and data collection protocols.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ADD this new empty section -->
-            <div class="training-section">
-                <h3 class="section-title">Technical Training</h3>
-                <div class="training-cards technical-training">
-                    <div class="placeholder-card">
-                        <p class="placeholder-text">Technical training content coming soon...</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Professional Certifications Section -->
-            <div class="training-section">
-                <h3 class="section-title">Professional Certifications</h3>
-                <div class="training-cards professional-training">
-                    <div class="training-card">
-                        <h3 class="training-name">AgilePM Certification</h3>
-                        <p class="training-description">Project management certification focusing on agile methodologies and iterative development processes.</p>
-                        <div class="training-info">
-                            <span class="training-date">2023</span>
-                            <span class="training-provider">APMG International</span>
-                        </div>
-                    </div>
-                    
-                    <div class="training-card">
-                        <h3 class="training-name">Emergency First Aid at Work</h3>
-                        <p class="training-description">Certified in emergency first aid procedures and workplace safety protocols.</p>
-                        <div class="training-info">
-                            <span class="training-date">February 2023</span>
-                            <span class="training-provider">Red Cross</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
- <!-- 
-
-
-=================================================================
-WORK EXPERIENCE PAGE - Add this after your training page section
-=================================================================
--->
-<div id="work-experience" class="page-content">
-    <div class="content-container">
-        <div class="work-wrapper">
-            <h2 class="page-title">Work Experience</h2>
-            
-            <!-- Professional Experience Section -->
-            <div class="work-section">
-                <h3 class="section-title">Professional Experience</h3>
-                <div class="work-cards">
-                    
-                    <!-- Current Role: Risk Analyst -->
-                    <div class="work-card institution-card" data-institution="risk-analyst">
-                        <div class="institution-header">
-                            <div class="institution-info">
-                                <h3 class="training-name">Risk Analyst</h3>
-                                <p class="institution-description">Biomathematical Risk Research Department, Epidemiological Sciences</p>
-                                <div class="work-details">
-                                    <span class="company-name">Animal and Plant Health Agency</span>
-                                    <span class="work-location">New Haw, UK</span>
-                                </div>
-                                <div class="training-info">
-                                    <span class="training-date">2023 – 2024</span>
-                                </div>
-                            </div>
-                            <div class="expand-icon">
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                        </div>
-                        
-                        <!-- Expandable Job Details Section -->
-                        <div class="modules-content" style="display: none;">
-                            <div class="modules-grid">
-                                <div class="module-item">
-                                    <h4 class="module-title">Risk Assessment & Analysis</h4>
-                                    <p class="module-description">Develop qualitative risk assessments and support data collection for quantitative risk assessments. Projects inform UK policy and trade by assessing risks to animal health due to trade in various commodities and respond to perceived threats from pathogen incursions affecting livestock, pets, and wildlife.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">Scientific Literature Review & Reporting</h4>
-                                    <p class="module-description">Perform effective literature reviews for inbound projects and scientific report writing. Effectively convey qualitative and quantitative data for risk assessment and provide internal review of projects for quality assurance.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">Stakeholder Communication & Project Management</h4>
-                                    <p class="module-description">Coordinate with colleagues, stakeholders, APHA and DEFRA staff. Organize meetings and presentations to discuss project parameters and updates. Liaise with parties holding information necessary for risk assessment including policymakers, collaborators, and specialists.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">Research & Professional Development</h4>
-                                    <p class="module-description">Contribute to future project proposals and attend scientific conferences and seminars. Network with members of other organizations and academic institutions to spread awareness of departmental work and facilitate collaborations.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">Key Achievements</h4>
-                                    <p class="module-description">• Presented poster at SVEPM conference in Uppsala, Sweden on Echinococcus Multilocularis surveillance methods<br>• Named author for WOAH project guidelines to reduce risks in wild animal trade<br>• Provide expertise during notifiable disease outbreaks</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">Project Types Managed</h4>
-                                    <p class="module-description">Risk and economic analyses, Hazard identifications, policy-informing assessments for national and international animal health and food safety issues, reactive threat response projects.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Previous Role: Scientific Assistant -->
-                    <div class="work-card institution-card" data-institution="scientific-assistant">
-                        <div class="institution-header">
-                            <div class="institution-info">
-                                <h3 class="training-name">Scientific Assistant</h3>
-                                <p class="institution-description">CFT/IFAT Laboratory, Serology Department</p>
-                                <div class="work-details">
-                                    <span class="company-name">Animal and Plant Health Agency</span>
-                                    <span class="work-location">New Haw, UK</span>
-                                </div>
-                                <div class="training-info">
-                                    <span class="training-date">2022 – 2023</span>
-                                    <span class="training-provider">Laboratory Role</span>
-                                </div>
-                            </div>
-                            <div class="expand-icon">
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                        </div>
-                        
-                        <!-- Expandable Job Details Section -->
-                        <div class="modules-content" style="display: none;">
-                            <div class="modules-grid">
-                                <div class="module-item">
-                                    <h4 class="module-title">Diagnostic Testing</h4>
-                                    <p class="module-description">Performed various diagnostic tests for zoonotic diseases including PCR, iELISA, CFT, and IFAT on submitted samples. Maintained and updated Standard Operating Procedures (SOPs) for diagnostic tests to ensure accuracy and compliance.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">Laboratory Coordination</h4>
-                                    <p class="module-description">Communicated and coordinated between laboratories and departments to ensure SOPs were followed. Suggested improvements to optimize time-effective delivery of client sample results while maintaining quality standards.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">Outbreak Response</h4>
-                                    <p class="module-description">Worked on bird flu outbreak response, preparing suspected positive samples for real-time PCR. Demonstrated consistency under time pressures and sudden high short-term workloads during disease outbreak scenarios.</p>
-                                </div>
-                                
-                                <div class="module-item">
-                                    <h4 class="module-title">Client Communication</h4>
-                                    <p class="module-description">Worked in front-facing office performing professional customer communication. Managed client inquiries and provided updates on sample processing and results delivery timelines.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- 
-=================================================================
-PUBLICATIONS PAGE - Research publications and contributions
-=================================================================
--->
-<div id="publications" class="page-content">
-    <div class="content-container">
-        <div class="publications-wrapper">
-            <h2 class="page-title">Publications & Contributions</h2>
-            <div class="publications-list">
+    <div id="training" class="page-content">
+        <div class="content-container">
+            <div class="training-wrapper">
+                <h2 class="page-title">Training & Certifications</h2>
                 
-                <!-- Publication 1 - Conference Presentation -->
-                <div class="publication-card project-card" data-pdf="images/echinococcusposter.pdf">
-                    <div class="publication-image">
-                        <img src="images/upsala.png" alt="Echinococcus surveillance conference poster" class="pub-image">
-                    </div>
-                    
-                    <div class="publication-content">
-                        <h3 class="publication-title">Echinococcus multilocularis surveillance in Great Britain: an assessment of the costs and effectiveness of different diagnostic tests</h3>
-                        <p class="publication-description">Conference presentation evaluating the cost-effectiveness of different diagnostic approaches for Echinococcus multilocularis surveillance in Great Britain. Research demonstrated that ELISA may be a more effective and economical diagnostic test compared to current necropsy-based methods, with implications for wildlife disease monitoring programs.</p>
-                        <div class="publication-details">
-                            <span class="publication-type conference-presentation">Conference Presentation</span>
-                            <span class="publication-year">2024</span>
-                            <span class="conference-name">WOAH Collaborating Centre for Risk Analysis & Modelling</span>
+                <!-- Academic Qualifications Section -->
+                <div class="training-section">
+                    <h3 class="section-title">Academic Qualifications</h3>
+                    <div class="training-cards academic-training">
+                        
+                        <!-- Imperial College London - Expandable Card -->
+                        <div class="training-card institution-card" data-institution="imperial">
+                            <div class="institution-header">
+                                <div class="institution-info">
+                                    <h3 class="training-name">Imperial College London</h3>
+                                    <p class="institution-description">MSc in Living Planet with Computational Methods in Ecology and Evolution</p>
+                                    <div class="training-info">
+                                        <span class="training-date">2024 - Present</span>
+                                        <span class="training-provider">Predicted First Class Honours</span>
+                                    </div>
+                                </div>
+                                <div class="expand-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Expandable Modules Section -->
+                            <div class="modules-content" style="display: none;">
+                                <div class="modules-grid">
+                                    <div class="module-item">
+                                        <h4 class="module-title">Biological Computing Bootcamp</h4>
+                                        <p class="module-description">Intensive training in R, Python, Bash, and Jupyter Notebooks for biological data analysis. Developed workflow best practices through collaborative GitHub projects.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">Advanced Statistical Modeling</h4>
+                                        <p class="module-description">Comprehensive training in statistical analysis including maximum likelihood estimation, Bayesian inference, and machine learning applications in ecology.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">High Performance Computing</h4>
+                                        <p class="module-description">Gained practical experience with R scripting, parallel computing, cluster job scheduling (PBS), and workflow optimization for large-scale ecological simulations.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">GIS & Bioinformatics</h4>
+                                        <p class="module-description">Developed skills in GIS using R, bioinformatics, and sequence alignment using tools like NCBI and ORF Finder for ecological and evolutionary data analysis.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">Statistics in R & Mathematical Modelling</h4>
+                                        <p class="module-description">Practical experience in statistical analysis and mathematical modelling to interpret ecological and evolutionary data using maximum likelihood estimation and Bayesian inference.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">Advanced Data Science</h4>
+                                        <p class="module-description">Covered foundational machine learning for model fitting and data analysis in ecological contexts.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="project-actions">
-                            <button class="action-button pdf-button">View Poster</button>
+                        
+                        <!-- University of Exeter - Expandable Card -->
+                        <div class="training-card institution-card" data-institution="exeter">
+                            <div class="institution-header">
+                                <div class="institution-info">
+                                    <h3 class="training-name">University of Exeter</h3>
+                                    <p class="institution-description">BSc in Conservation Biology and Ecology</p>
+                                    <div class="training-info">
+                                        <span class="training-date">2019 - 2022</span>
+                                        <span class="training-provider">Upper Second-Class Honours</span>
+                                    </div>
+                                </div>
+                                <div class="expand-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Expandable Modules Section -->
+                            <div class="modules-content" style="display: none;">
+                                <div class="modules-grid">
+                                    <div class="module-item">
+                                        <h4 class="module-title">Research Project</h4>
+                                        <p class="module-description">"Analysis of the Effects of Artificial Light on Parental Behaviour of Nesting Herring Gulls" - Literature review, statistical analysis in R, and behavioral data recording.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">Conservation Principles</h4>
+                                        <p class="module-description">Core principles of biodiversity conservation, habitat management, and species protection strategies.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">Ecological Statistics</h4>
+                                        <p class="module-description">Statistical methods for analyzing ecological data, including ANOVA, regression analysis, and multivariate statistics.</p>
+                                    </div>
+                                    
+                                    <div class="module-item">
+                                        <h4 class="module-title">Field Ecology Methods</h4>
+                                        <p class="module-description">Hands-on experience with field sampling techniques, species identification, and data collection protocols.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Training Section -->
+                <div class="training-section">
+                    <h3 class="section-title">Technical Training</h3>
+                    <div class="training-cards technical-training">
+                        <div class="placeholder-card">
+                            <p class="placeholder-text">Technical training content coming soon...</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Publication 2 - WOAH Guidelines -->  
-                <div class="publication-card">
-                    <div class="publication-image">
-                        <img src="images/woahguidelines.png" alt="WOAH Guidelines Publication" class="pub-image">
-                    </div>
-                    
-                    <div class="publication-content">
-                        <h3 class="publication-title">Guidelines for Addressing Disease Risks in Wildlife Trade</h3>
-                        <p class="publication-authors">World Organisation for Animal Health (2024)</p>
-                        <p class="publication-description">Served as Editor and Reviewer for this comprehensive guideline document addressing disease risks in wildlife trade. The publication provides frameworks for risk assessment and management strategies for preventing disease transmission through wildlife commerce.</p>
-                        <div class="publication-details">
-                            <span class="publication-type">Editorial Contribution</span>
-                            <span class="publication-year">2024</span>
-                            <a href="https://doi.org/10.20506/woah.3368" class="publication-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> DOI: 10.20506/woah.3368
-                            </a>
+                <!-- Professional Certifications Section -->
+                <div class="training-section">
+                    <h3 class="section-title">Professional Certifications</h3>
+                    <div class="training-cards professional-training">
+                        <div class="training-card">
+                            <h3 class="training-name">AgilePM Certification</h3>
+                            <p class="training-description">Project management certification focusing on agile methodologies and iterative development processes.</p>
+                            <div class="training-info">
+                                <span class="training-date">2023</span>
+                                <span class="training-provider">APMG International</span>
+                            </div>
+                        </div>
+                        
+                        <div class="training-card">
+                            <h3 class="training-name">Emergency First Aid at Work</h3>
+                            <p class="training-description">Certified in emergency first aid procedures and workplace safety protocols.</p>
+                            <div class="training-info">
+                                <span class="training-date">February 2023</span>
+                                <span class="training-provider">Red Cross</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- 
+    =================================================================
+    PUBLICATIONS PAGE - Research publications and contributions
+    =================================================================
+    -->
+    <div id="publications" class="page-content">
+        <div class="content-container">
+            <div class="publications-wrapper">
+                <h2 class="page-title">Publications & Contributions</h2>
+                <div class="publications-list">
+                    
+                    <!-- Publication 1 - Conference Presentation -->
+                    <div class="publication-card project-card" data-pdf="images/echinococcusposter.pdf">
+                        <div class="publication-image">
+                            <img src="images/upsala.png" alt="Echinococcus surveillance conference poster" class="pub-image">
+                        </div>
+                        
+                        <div class="publication-content">
+                            <h3 class="publication-title">Echinococcus multilocularis surveillance in Great Britain: an assessment of the costs and effectiveness of different diagnostic tests</h3>
+                            <p class="publication-description">Conference presentation evaluating the cost-effectiveness of different diagnostic approaches for Echinococcus multilocularis surveillance in Great Britain. Research demonstrated that ELISA may be a more effective and economical diagnostic test compared to current necropsy-based methods, with implications for wildlife disease monitoring programs.</p>
+                            <div class="publication-details">
+                                <span class="publication-type conference-presentation">Conference Presentation</span>
+                                <span class="publication-year">2024</span>
+                                <span class="conference-name">WOAH Collaborating Centre for Risk Analysis & Modelling</span>
+                            </div>
+                            <div class="project-actions">
+                                <button class="action-button pdf-button">View Poster</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Publication 2 - WOAH Guidelines -->  
+                    <div class="publication-card">
+                        <div class="publication-image">
+                            <img src="images/woahguidelines.png" alt="WOAH Guidelines Publication" class="pub-image">
+                        </div>
+                        
+                        <div class="publication-content">
+                            <h3 class="publication-title">Guidelines for Addressing Disease Risks in Wildlife Trade</h3>
+                            <p class="publication-authors">World Organisation for Animal Health (2024)</p>
+                            <p class="publication-description">Served as Editor and Reviewer for this comprehensive guideline document addressing disease risks in wildlife trade. The publication provides frameworks for risk assessment and management strategies for preventing disease transmission through wildlife commerce.</p>
+                            <div class="publication-details">
+                                <span class="publication-type">Editorial Contribution</span>
+                                <span class="publication-year">2024</span>
+                                <a href="https://doi.org/10.20506/woah.3368" class="publication-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> DOI: 10.20506/woah.3368
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 
     =================================================================
     PDF VIEWER MODAL - Popup window for viewing documents

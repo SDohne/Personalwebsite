@@ -42,16 +42,16 @@ RESET AND BASE STYLES - Foundation styles for all elements
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Makes padding and border included in element width */
+    box-sizing: border-box;
 }
 
 /* Base styles for the entire website */
 body {
-    font-family: 'Helvetica Neue', sans-serif; /* Professional serif font */
-    line-height: 1.6; /* Comfortable reading spacing */
+    font-family: 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
     color: var(--text-primary);
     background-color: var(--background-light);
-    font-size: 16px; /* Base font size */
+    font-size: 16px;
 }
 
 /* Remove default link styling */
@@ -77,12 +77,12 @@ NAVIGATION BAR - Top navigation area
     box-shadow: 0 2px 10px var(--shadow-light);
     padding: 1.5rem 2rem;
     display: flex;
-    justify-content: space-between; /* Space between logo and nav links */
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-    position: sticky; /* Keeps navigation visible when scrolling */
+    position: sticky;
     top: 0;
-    z-index: 100; /* Ensures nav stays above other content */
+    z-index: 100;
 }
 
 /* Left side: Logo/name section */
@@ -102,7 +102,7 @@ NAVIGATION BAR - Top navigation area
 /* Right side: Navigation links */
 .navigation-links {
     display: flex;
-    gap: 2rem; /* Space between navigation buttons */
+    gap: 2rem;
 }
 
 /* Individual navigation buttons */
@@ -112,7 +112,7 @@ NAVIGATION BAR - Top navigation area
     color: var(--text-primary);
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    transition: all 0.3s ease; /* Smooth color and background transitions */
+    transition: all 0.3s ease;
 }
 
 /* Animated underline effect for navigation */
@@ -125,7 +125,7 @@ NAVIGATION BAR - Top navigation area
     height: 2px;
     background-color: var(--primary-color);
     transition: all 0.3s ease;
-    transform: translateX(-50%); /* Centers the underline */
+    transform: translateX(-50%);
 }
 
 /* Hover effects for navigation buttons */
@@ -135,38 +135,44 @@ NAVIGATION BAR - Top navigation area
 }
 
 .nav-button:hover::after {
-    width: 80%; /* Underline expands on hover */
+    width: 80%;
 }
 
 /* 
 =================================================================
-MAIN CONTENT AREAS - Layout for all page content
+MAIN CONTENT AREAS - Layout for all page content - FIXED
 =================================================================
 */
 
 /* Container that centers and limits width of content */
 .content-container {
-    max-width: 1200px; /* Maximum width for readability */
-    margin: 0 auto; /* Centers the container */
-    padding: 0 2rem; /* Padding on left and right */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
 }
 
-/* Hide all pages by default (for single-page app effect) */
+/* Hide all pages by default - FIXED PAGE OVERLAP ISSUE */
 .page-content {
-    display: none;
-    animation: fadeIn 0.5s ease-in-out; /* Fade in animation when page appears */
+    display: none !important;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Show the active page */
-.active {
-    display: block;
+/* Show the active page - FIXED */
+.page-content.active {
+    display: block !important;
 }
 
 /* Fade-in animation for page transitions */
 @keyframes fadeIn {
     from { 
         opacity: 0;
-        transform: translateY(20px); /* Slides up slightly as it fades in */
+        transform: translateY(20px);
     }
     to { 
         opacity: 1;
@@ -202,21 +208,21 @@ PROFILE HEADER - Profile picture and GitHub showcase (Home page)
 
 /* Profile picture section */
 .profile-picture {
-    flex-shrink: 0; /* Prevents picture from shrinking */
+    flex-shrink: 0;
 }
 
 .profile-img {
     width: 120px;
     height: 120px;
-    border-radius: 50%; /* Makes image circular */
-    object-fit: cover; /* Ensures image fits properly in circle */
+    border-radius: 50%;
+    object-fit: cover;
     border: 4px solid var(--primary-color);
     box-shadow: 0 4px 15px var(--shadow-medium);
 }
 
 /* Centered GitHub showcase */
 .github-showcase {
-    flex-grow: 1; /* Takes up remaining space */
+    flex-grow: 1;
     display: flex;
     justify-content: center;
 }
@@ -228,7 +234,7 @@ PROFILE HEADER - Profile picture and GitHub showcase (Home page)
     padding: 1rem 2rem;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
     color: white;
-    border-radius: 50px; /* Pill-shaped button */
+    border-radius: 50px;
     font-size: 1.1rem;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -236,9 +242,9 @@ PROFILE HEADER - Profile picture and GitHub showcase (Home page)
 }
 
 .github-main-link:hover {
-    transform: translateY(-3px); /* Lifts button on hover */
-    box-shadow: 0 6px 20px var(--shadow-medium);
-    background: linear-gradient(135deg, var(--primary-light), var(--accent-color));
+    background-color: var(--primary-color);
+    transform: none;
+    box-shadow: none;
 }
 
 .github-main-link i {
@@ -247,62 +253,74 @@ PROFILE HEADER - Profile picture and GitHub showcase (Home page)
 
 /* 
 =================================================================
-PROJECT PORTFOLIO - Grid of project cards (Home page)
+PROJECT PORTFOLIO - Grid of project cards (Home page) - FIXED
 =================================================================
 */
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Responsive grid */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
     margin: 2rem 0 4rem;
+    width: 100%;
 }
 
-/* Individual project cards */
+/* Individual project cards - FIXED WITH UNIFORM STYLING */
 .project-card {
     background-color: var(--background-card);
     border-radius: 12px;
     box-shadow: 0 4px 15px var(--shadow-light);
     padding: 2rem;
     transition: all 0.3s ease;
-    border-left: 4px solid var(--primary-color); /* Colored left border */
+    border-left: 4px solid var(--primary-color); /* SINGLE COLOR FOR ALL */
     cursor: pointer;
+    margin-bottom: 0;
 }
 
 .project-card:hover {
-  transform: none;
-  box-shadow: 0 2px 8px var(--shadow-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-medium);
 }
 
-.github-main-link:hover {
-  background: var(--primary-color);
-  transform: none;
-  box-shadow: none;
+/* Project expanded content styling */
+.project-expanded-content {
+    padding-top: 1rem;
 }
 
-/* Project information section */
-.project-info .project-title {
-    font-size: 1.4rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-.project-summary {
+.project-expanded-content .project-summary {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
     line-height: 1.6;
+    text-align: justify;
 }
 
-/* Project metadata (category and year) */
-.project-details {
+.project-expanded-content .project-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Ensure action buttons work properly in expanded content */
+.project-expanded-content .action-button {
+    flex: 1;
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+/* Project details layout for collapsed state */
+.project-card .project-details {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-top: 0.8rem;
 }
 
-.project-category {
+.project-card .project-category {
     background-color: var(--background-light);
     color: var(--primary-color);
     padding: 0.3rem 0.8rem;
@@ -311,10 +329,19 @@ PROJECT PORTFOLIO - Grid of project cards (Home page)
     font-weight: 600;
 }
 
-.project-year {
+.project-card .project-year {
     color: var(--text-secondary);
     font-size: 0.9rem;
     font-weight: 500;
+}
+
+/* Enhanced institution description for projects */
+.project-card .institution-description {
+    color: var(--text-secondary);
+    margin: 0.3rem 0 0.8rem 0;
+    font-style: italic;
+    font-size: 0.9rem;
+    line-height: 1.4;
 }
 
 /* Action buttons (View Report, View Code) */
@@ -325,7 +352,7 @@ PROJECT PORTFOLIO - Grid of project cards (Home page)
 }
 
 .action-button {
-    flex: 1; /* Each button takes equal width */
+    flex: 1;
     padding: 0.7rem 1rem;
     border: none;
     border-radius: 6px;
@@ -357,540 +384,30 @@ PROJECT PORTFOLIO - Grid of project cards (Home page)
     transform: translateY(-2px);
 }
 
-/* 
-=================================================================
-ABOUT PAGE - Personal information layout
-=================================================================
-*/
-
-.about-wrapper {
-    max-width: 900px;
-    margin: 2rem auto 4rem;
+/* Animation improvements for project cards */
+.project-card.expanded {
+    border-left-width: 6px;
+    background: linear-gradient(135deg, var(--background-card) 0%, #f8f9fa 100%);
 }
 
-.about-layout {
-    display: grid;
-    grid-template-columns: 2fr 1fr; /* Text takes 2/3, contact takes 1/3 */
-    gap: 3rem;
-    margin-top: 2rem;
+/* Hover effects for project titles */
+.project-card .training-name {
+    transition: color 0.3s ease;
 }
 
-.about-text-content p {
-    margin-bottom: 1.5rem;
-    color: var(--text-secondary);
-    text-align: justify; /* Justifies text for professional appearance */
-}
-
-/* Contact section */
-.contact-section .contact-title {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    font-size: 1.3rem;
-}
-
-.contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.contact-link {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0.8rem 1rem;
-    background-color: var(--background-main);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px var(--shadow-light);
-    transition: all 0.3s ease;
-    color: var(--text-primary);
-}
-
-.contact-link:hover {
-    transform: translateX(5px); /* Slides right on hover */
-    box-shadow: 0 4px 15px var(--shadow-medium);
+.project-card:hover .training-name {
     color: var(--primary-color);
 }
 
-.contact-link i {
-    font-size: 1.2rem;
-    width: 20px;
-    text-align: center;
-    color: var(--primary-color);
+/* Loading state for project actions */
+.project-expanded-content .action-button:active {
+    transform: scale(0.98);
 }
 
 /* 
 =================================================================
-TRAINING PAGE - Certifications and courses layout
+EXPANDABLE INSTITUTION CARDS FUNCTIONALITY - FIXED
 =================================================================
-*/
-
-.training-wrapper {
-    max-width: 1000px;
-    margin: 2rem auto 4rem;
-}
-
-.training-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.training-card {
-    background-color: var(--background-card);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px var(--shadow-light);
-    border-left: 4px solid var(--secondary-color);
-    transition: transform 0.3s ease;
-}
-
-.training-card:hover {
-    transform: translateY(-3px);
-}
-
-.training-card .training-name {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-    font-weight: 600;
-}
-
-.training-description {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
-
-.training-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.9rem;
-}
-
-.training-date {
-    color: var(--secondary-color);
-    font-weight: 600;
-}
-
-.training-provider {
-    color: var(--text-secondary);
-    font-style: italic;
-}
-
-/* Future training placeholder styling */
-.training-card.future-training {
-    border-left-color: var(--text-light);
-    opacity: 0.7;
-}
-
-/* 
-=================================================================
-PUBLICATIONS PAGE - Research publications layout
-=================================================================
-*/
-
-.publications-wrapper {
-    max-width: 1000px;
-    margin: 2rem auto 4rem;
-}
-
-.publications-list {
-    margin-top: 2rem;
-}
-
-.publication-card {
-    background-color: var(--background-card);
-    padding: 2rem;
-    margin-bottom: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px var(--shadow-light);
-    border-left: 4px solid var(--error-color);
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-}
-
-.conference-presentation {
-    background-color: #e8f5e8;
-    color: var(--secondary-color);
-}
-
-.conference-name {
-    color: var(--text-secondary);
-    font-size: 0.8rem;
-    font-style: italic;
-    margin-left: 1rem;
-}
-
-/* Publication image section */
-.publication-image {
-    flex-shrink: 0;
-    width: 150px;
-}
-
-.pub-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px var(--shadow-light);
-}
-
-/* Publication content section */
-.publication-content {
-    flex: 1;
-}
-
-.publication-title {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-    font-size: 1.4rem;
-    font-weight: 600;
-}
-
-.publication-authors {
-    color: var(--text-secondary);
-    font-style: italic;
-    margin-bottom: 1rem;
-}
-
-.publication-description {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
-
-.publication-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.publication-type {
-    background-color: #fee;
-    color: var(--error-color);
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
-
-.publication-year {
-    color: var(--text-secondary);
-    font-weight: 600;
-}
-
-.publication-link {
-    color: var(--primary-color);
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.publication-link:hover {
-    color: var(--primary-dark);
-}
-
-.publication-link i {
-    margin-right: 0.5rem;
-}
-
-/* Future publications placeholder */
-.publication-card.future-publication {
-    border-left-color: var(--text-light);
-    opacity: 0.7;
-}
-
-/* Publications without images */
-.publication-card:not(:has(.publication-image)) {
-    display: block;
-}
-
-/* 
-=================================================================
-PDF VIEWER MODAL - Popup for viewing documents
-=================================================================
-*/
-
-.document-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.modal-window {
-    position: relative;
-    width: 90%;
-    height: 90%;
-    max-width: 1000px;
-    background-color: var(--background-main);
-    border-radius: 12px;
-    padding: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-#pdfViewer {
-    border: none;
-    border-radius: 8px;
-}
-
-.modal-close {
-    position: absolute;
-    top: -15px;
-    right: 15px;
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 1001;
-    transition: color 0.3s;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-}
-
-.modal-close:hover {
-    color: var(--text-light);
-}
-
-/* 
-=================================================================
-FOOTER - Site footer styling
-=================================================================
-*/
-
-.site-footer {
-    background-color: var(--primary-color);
-    color: white;
-    text-align: center;
-    padding: 2rem;
-    margin-top: 4rem;
-}
-
-/* 
-=================================================================
-RESPONSIVE DESIGN - Adaptations for different screen sizes
-=================================================================
-*/
-
-/* Large tablets and small desktops (1024px and below) */
-@media (max-width: 1024px) {
-    .about-layout {
-        grid-template-columns: 1fr; /* Stack vertically */
-        gap: 2rem;
-    }
-    
-    .contact-links {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    
-    .profile-header {
-        flex-direction: column;
-        gap: 2rem;
-        text-align: center;
-    }
-}
-
-/* Tablets (768px and below) */
-@media (max-width: 768px) {
-    /* Navigation adjustments */
-    .main-navigation {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1.5rem;
-    }
-    
-    .navigation-links {
-        gap: 1.5rem;
-    }
-    
-    /* Grid adjustments */
-    .projects-grid {
-        grid-template-columns: 1fr; /* Single column on mobile */
-    }
-    
-    .training-cards {
-        grid-template-columns: 1fr;
-    }
-    
-    /* Container padding */
-    .content-container {
-        padding: 0 1rem;
-    }
-    
-    /* Typography adjustments */
-    .page-title {
-        font-size: 2rem;
-    }
-    
-    .main-name {
-        font-size: 1.5rem !important;
-    }
-    
-    /* Modal adjustments */
-    .modal-window {
-        width: 95%;
-        height: 85%;
-    }
-    
-    /* Publication cards */
-    .publication-card {
-        flex-direction: column;
-    }
-    
-    .publication-image {
-        width: 100%;
-        max-width: 200px;
-        align-self: center;
-    }
-    
-    .publication-details {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    /* Profile header mobile */
-    .profile-header {
-        padding: 1.5rem;
-    }
-    
-    .profile-img {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .github-main-link {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-    }
-}
-
-/* Small mobile phones (480px and below) */
-@media (max-width: 480px) {
-    .main-navigation {
-        padding: 1rem;
-    }
-    
-    .navigation-links {
-        flex-direction: column;
-        gap: 0.5rem;
-        width: 100%;
-    }
-    
-    .nav-button {
-        text-align: center;
-        padding: 0.8rem;
-    }
-    
-    .project-actions {
-        flex-direction: column;
-    }
-    
-    .github-main-link {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-}
-
-/* 
-=================================================================
-UTILITY CLASSES - Helper classes for common styling needs
-=================================================================
-*/
-
-/* Text alignment utilities */
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
-
-/* Margin utilities */
-.mb-1 { margin-bottom: 1rem; }
-.mb-2 { margin-bottom: 2rem; }
-.mt-1 { margin-top: 1rem; }
-.mt-2 { margin-top: 2rem; }
-
-/* Visibility utilities */
-.hidden { display: none; }
-.visible { display: block; }
-
-/* Color utilities */
-.text-primary { color: var(--primary-color); }
-.text-secondary { color: var(--text-secondary); }
-.text-success { color: var(--success-color); }
-
-/* 
-=================================================================
-ACCESSIBILITY IMPROVEMENTS
-=================================================================
-*/
-
-/* Focus styles for keyboard navigation */
-.nav-button:focus,
-.action-button:focus,
-.contact-link:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-/* Ensure sufficient color contrast */
-.project-card:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-/* Screen reader only content */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-/* 
-=================================================================
-PRINT STYLES - How the page looks when printed
-=================================================================
-*/
-
-@media print {
-    .main-navigation,
-    .site-footer,
-    .document-modal {
-        display: none;
-    }
-    
-    .page-content {
-        display: block !important;
-    }
-    
-    .project-card,
-    .training-card,
-    .publication-card {
-        break-inside: avoid;
-        page-break-inside: avoid;
-    }
-}
-
-/* 
-=================================================================
-UPDATED TRAINING SECTION - Expandable Institution Cards
-=================================================================
-Add these styles to your existing CSS file (style.css)
 */
 
 /* Institution Cards - Expandable Training Cards */
@@ -998,8 +515,497 @@ Add these styles to your existing CSS file (style.css)
     font-size: 0.9rem;
 }
 
-/* Responsive Design for Institution Cards */
+/* 
+=================================================================
+ABOUT PAGE - Personal information layout
+=================================================================
+*/
+
+.about-wrapper {
+    max-width: 900px;
+    margin: 2rem auto 4rem;
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.about-text-content p {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    text-align: justify;
+}
+
+/* Contact section */
+.contact-section .contact-title {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    background-color: var(--background-main);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+}
+
+.contact-link:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px var(--shadow-medium);
+    color: var(--primary-color);
+}
+
+.contact-link i {
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+/* 
+=================================================================
+TRAINING PAGE - Certifications and courses layout
+=================================================================
+*/
+
+.training-wrapper {
+    max-width: 1000px;
+    margin: 2rem auto 4rem;
+}
+
+.training-section {
+    margin-bottom: 4rem;
+}
+
+.training-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.training-card {
+    background-color: var(--background-card);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    border-left: 4px solid var(--secondary-color);
+    transition: transform 0.3s ease;
+}
+
+.training-card:hover {
+    transform: translateY(-3px);
+}
+
+.training-card .training-name {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.training-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.training-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.training-date {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.training-provider {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Section Title Styling */
+.section-title {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-light);
+    padding-bottom: 0.5rem;
+}
+
+/* Placeholder card styling */
+.placeholder-card {
+    background-color: var(--background-light);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px dashed var(--border-light);
+}
+
+.placeholder-text {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* 
+=================================================================
+WORK EXPERIENCE PAGE - Additional CSS Styles
+=================================================================
+*/
+
+.work-wrapper {
+    max-width: 1000px;
+    margin: 2rem auto 4rem;
+}
+
+.work-section {
+    margin-bottom: 3rem;
+}
+
+.work-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.work-card {
+    background-color: var(--background-card);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    padding: 2rem;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--secondary-color);
+    cursor: pointer;
+}
+
+.work-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-medium);
+}
+
+.work-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.company-name {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.work-location {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* 
+=================================================================
+PUBLICATIONS PAGE - Research publications layout
+=================================================================
+*/
+
+.publications-wrapper {
+    max-width: 1000px;
+    margin: 2rem auto 4rem;
+}
+
+.publications-list {
+    margin-top: 2rem;
+}
+
+.publication-card {
+    background-color: var(--background-card);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    border-left: 4px solid var(--primary-color);
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.conference-presentation {
+    background-color: #e8f5e8;
+    color: var(--secondary-color);
+}
+
+.conference-name {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-left: 1rem;
+}
+
+.publication-image {
+    flex-shrink: 0;
+    width: 150px;
+}
+
+.pub-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.publication-content {
+    flex: 1;
+}
+
+.publication-title {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.publication-authors {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.publication-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.publication-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.publication-type {
+    background-color: var(--background-light);
+    color: var(--primary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.publication-year {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.publication-link {
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.publication-link:hover {
+    color: var(--primary-dark);
+}
+
+.publication-link i {
+    margin-right: 0.5rem;
+}
+
+/* 
+=================================================================
+PDF VIEWER MODAL - Popup for viewing documents
+=================================================================
+*/
+
+.document-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-window {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    max-width: 1000px;
+    background-color: var(--background-main);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+#pdfViewer {
+    border: none;
+    border-radius: 8px;
+}
+
+.modal-close {
+    position: absolute;
+    top: -15px;
+    right: 15px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    transition: color 0.3s;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.modal-close:hover {
+    color: var(--text-light);
+}
+
+/* 
+=================================================================
+FOOTER - Site footer styling
+=================================================================
+*/
+
+.site-footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+/* 
+=================================================================
+RESPONSIVE DESIGN - Adaptations for different screen sizes
+=================================================================
+*/
+
+/* For larger screens, make modules grid two columns */
+@media (min-width: 1024px) {
+    .modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .about-layout {
+        grid-template-columns: 2fr 1fr;
+        gap: 3rem;
+    }
+    
+    .contact-links {
+        flex-direction: column;
+    }
+    
+    .profile-header {
+        flex-direction: row;
+        text-align: left;
+    }
+}
+
+/* Tablets (768px and below) */
 @media (max-width: 768px) {
+    .main-navigation {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .navigation-links {
+        gap: 1.5rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .training-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .content-container {
+        padding: 0 1rem;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .main-name {
+        font-size: 1.5rem !important;
+    }
+    
+    .modal-window {
+        width: 95%;
+        height: 85%;
+    }
+    
+    .publication-card {
+        flex-direction: column;
+    }
+    
+    .publication-image {
+        width: 100%;
+        max-width: 200px;
+        align-self: center;
+    }
+    
+    .publication-details {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+        padding: 1.5rem;
+    }
+    
+    .profile-img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .github-main-link {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .contact-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
     .institution-header {
         flex-direction: column;
         align-items: flex-start;
@@ -1019,196 +1025,119 @@ Add these styles to your existing CSS file (style.css)
     .module-item {
         padding: 1rem;
     }
-}
-
-/* For larger screens, make modules grid two columns */
-@media (min-width: 1024px) {
-    .modules-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+    
+    .project-expanded-content .project-actions {
+        flex-direction: column;
+        gap: 0.8rem;
     }
-}
-
-/* Placeholder card styling */
-.placeholder-card {
-    background-color: var(--background-light);
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
-    border: 2px dashed var(--border-light);
-}
-
-.placeholder-text {
-    color: var(--text-secondary);
-    font-style: italic;
-}
-
-/* Improved section spacing */
-.training-section {
-    margin-bottom: 4rem; /* Was 3rem */
-}
-
-/* 
-=================================================================
-WORK EXPERIENCE PAGE - Additional CSS Styles
-=================================================================
-Add these styles to your existing CSS file (style.css)
-*/
-
-/* Work Experience Page Layout */
-.work-wrapper {
-    max-width: 1000px;
-    margin: 2rem auto 4rem;
-}
-
-.work-section {
-    margin-bottom: 3rem;
-}
-
-.work-cards {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-/* Work Card Styling - Reuses institution card styles */
-.work-card {
-    background-color: var(--background-card);
-    border-radius: 12px;
-    box-shadow: 0 4px 15px var(--shadow-light);
-    padding: 2rem;
-    transition: all 0.3s ease;
-    border-left: 4px solid var(--secondary-color);
-    cursor: pointer;
-}
-
-.work-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px var(--shadow-medium);
-}
-
-/* Work Details Layout */
-.work-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0.5rem 0;
-    font-size: 0.9rem;
-}
-
-.company-name {
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-.work-location {
-    color: var(--text-secondary);
-    font-style: italic;
-}
-
-/* Current Role Highlighting */
-.work-card[data-institution="risk-analyst"] {
-    border-left-color: var(--primary-color);
-    background: linear-gradient(135deg, var(--background-card) 0%, #f8f9fa 100%);
-}
-
-.work-card[data-institution="risk-analyst"] .training-provider {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 0.2rem 0.6rem;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-/* Skills Summary Section */
-.skills-summary {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.skill-category {
-    background-color: var(--background-card);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px var(--shadow-light);
-    border-left: 4px solid var(--accent-color);
-}
-
-.skill-category h4 {
-    color: var(--primary-color);
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-.skill-category ul {
-    list-style: none;
-    padding: 0;
-}
-
-.skill-category li {
-    color: var(--text-secondary);
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--border-light);
-    position: relative;
-    padding-left: 1.2rem;
-}
-
-.skill-category li:last-child {
-    border-bottom: none;
-}
-
-/* Add bullet points to skill items */
-.skill-category li::before {
-    content: '▸';
-    color: var(--primary-color);
-    position: absolute;
-    left: 0;
-    font-weight: bold;
-}
-
-/* Section Title Styling */
-.work-section .section-title {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-    border-bottom: 2px solid var(--border-light);
-    padding-bottom: 0.5rem;
-}
-
-/* Responsive Design for Work Experience */
-@media (max-width: 768px) {
+    
+    .project-card .project-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
     .work-details {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.3rem;
     }
-    
-    .skills-summary {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .skill-category {
-        padding: 1.5rem;
-    }
 }
 
+/* Small mobile phones (480px and below) */
 @media (max-width: 480px) {
-    .work-wrapper {
-        margin: 1rem auto 2rem;
+    .main-navigation {
+        padding: 1rem;
+    }
+    
+    .navigation-links {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+    
+    .nav-button {
+        text-align: center;
+        padding: 0.8rem;
+    }
+    
+    .project-actions {
+        flex-direction: column;
+    }
+    
+    .github-main-link {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .project-card {
+        padding: 1.5rem;
+    }
+    
+    .project-expanded-content {
+        padding-top: 0.8rem;
+    }
+    
+    .projects-grid {
+        gap: 1rem;
     }
     
     .work-card {
         padding: 1.5rem;
     }
+}
+
+/* 
+=================================================================
+ACCESSIBILITY IMPROVEMENTS
+=================================================================
+*/
+
+.nav-button:focus,
+.action-button:focus,
+.contact-link:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.project-card:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* 
+=================================================================
+PRINT STYLES
+=================================================================
+*/
+
+@media print {
+    .main-navigation,
+    .site-footer,
+    .document-modal {
+        display: none;
+    }
     
-    .skill-category {
-        padding: 1rem;
+    .page-content {
+        display: block !important;
+    }
+    
+    .project-card,
+    .training-card,
+    .publication-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
     }
 }
