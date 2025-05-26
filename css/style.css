@@ -12,33 +12,24 @@ COLOR THEME - Consistent colors used throughout the site
 =================================================================
 */
 :root {
-    /* Primary colors - main theme colors */
-    --primary-color: #2c5aa0;        /* Professional blue */
-    --primary-light: #4a7bc8;        /* Lighter blue for hover effects */
-    --primary-dark: #1e3f73;         /* Darker blue for contrast */
-    
-    /* Secondary colors - complementary colors */
-    --secondary-color: #27ae60;       /* Green for success/completion */
-    --secondary-light: #2ecc71;       /* Light green */
-    --accent-color: #3498db;          /* Bright blue for highlights */
-    
-    /* Neutral colors - grays and backgrounds */
-    --text-primary: #2c3e50;          /* Dark gray for main text */
-    --text-secondary: #7f8c8d;        /* Medium gray for secondary text */
-    --text-light: #bdc3c7;            /* Light gray for subtle text */
-    --background-main: #ffffff;        /* White background */
-    --background-light: #f8f9fa;      /* Very light gray background */
-    --background-card: #ffffff;       /* White for card backgrounds */
-    
-    /* Status colors - for different states */
-    --warning-color: #f39c12;         /* Orange for warnings */
-    --error-color: #e74c3c;           /* Red for errors */
-    --success-color: #27ae60;         /* Green for success */
-    
-    /* Shadow and border colors */
-    --shadow-light: rgba(0,0,0,0.1);  /* Light shadow */
-    --shadow-medium: rgba(0,0,0,0.15); /* Medium shadow */
-    --border-light: #ecf0f1;          /* Light border color */
+  --primary-color: #333;
+  --primary-light: #555;
+  --primary-dark: #111;
+
+  --secondary-color: #444;
+  --accent-color: #666;
+
+  --text-primary: #222;
+  --text-secondary: #666;
+  --text-light: #aaa;
+
+  --background-main: #f7f7f7;
+  --background-light: #f0f0f0;
+  --background-card: #ffffff;
+
+  --shadow-light: rgba(0,0,0,0.05);
+  --shadow-medium: rgba(0,0,0,0.1);
+  --border-light: #ddd;
 }
 
 /* 
@@ -56,7 +47,7 @@ RESET AND BASE STYLES - Foundation styles for all elements
 
 /* Base styles for the entire website */
 body {
-    font-family: 'Georgia', 'Times New Roman', serif; /* Professional serif font */
+    font-family: 'Helvetica Neue', sans-serif; /* Professional serif font */
     line-height: 1.6; /* Comfortable reading spacing */
     color: var(--text-primary);
     background-color: var(--background-light);
@@ -278,10 +269,15 @@ PROJECT PORTFOLIO - Grid of project cards (Home page)
     cursor: pointer;
 }
 
-/* Hover effect for project cards */
 .project-card:hover {
-    transform: translateY(-5px); /* Lifts card slightly */
-    box-shadow: 0 8px 25px var(--shadow-medium);
+  transform: none;
+  box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.github-main-link:hover {
+  background: var(--primary-color);
+  transform: none;
+  box-shadow: none;
 }
 
 /* Project information section */
@@ -887,5 +883,313 @@ PRINT STYLES - How the page looks when printed
     .publication-card {
         break-inside: avoid;
         page-break-inside: avoid;
+    }
+}
+
+/* 
+=================================================================
+UPDATED TRAINING SECTION - Expandable Institution Cards
+=================================================================
+Add these styles to your existing CSS file (style.css)
+*/
+
+/* Institution Cards - Expandable Training Cards */
+.institution-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--primary-color);
+}
+
+.institution-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-medium);
+}
+
+/* Institution Header Layout */
+.institution-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.institution-info {
+    flex: 1;
+}
+
+.institution-description {
+    color: var(--text-secondary);
+    margin: 0.5rem 0 1rem 0;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+/* Expand/Collapse Icon */
+.expand-icon {
+    margin-left: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.expand-icon i {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+/* Rotate icon when expanded */
+.institution-card.expanded .expand-icon {
+    transform: rotate(180deg);
+}
+
+/* Modules Content Area */
+.modules-content {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-light);
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Slide down animation for expanding content */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        margin-top: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 1000px;
+        padding-top: 1.5rem;
+        margin-top: 1.5rem;
+    }
+}
+
+/* Modules Grid Layout */
+.modules-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+/* Individual Module Items */
+.module-item {
+    background-color: var(--background-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.module-item:hover {
+    background-color: var(--background-main);
+    transform: translateX(5px);
+}
+
+.module-title {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.module-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design for Institution Cards */
+@media (max-width: 768px) {
+    .institution-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .expand-icon {
+        align-self: flex-end;
+        margin-left: 0;
+        margin-top: -2rem;
+    }
+    
+    .modules-grid {
+        gap: 1rem;
+    }
+    
+    .module-item {
+        padding: 1rem;
+    }
+}
+
+/* For larger screens, make modules grid two columns */
+@media (min-width: 1024px) {
+    .modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* 
+=================================================================
+WORK EXPERIENCE PAGE - Additional CSS Styles
+=================================================================
+Add these styles to your existing CSS file (style.css)
+*/
+
+/* Work Experience Page Layout */
+.work-wrapper {
+    max-width: 1000px;
+    margin: 2rem auto 4rem;
+}
+
+.work-section {
+    margin-bottom: 3rem;
+}
+
+.work-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Work Card Styling - Reuses institution card styles */
+.work-card {
+    background-color: var(--background-card);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    padding: 2rem;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--secondary-color);
+    cursor: pointer;
+}
+
+.work-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-medium);
+}
+
+/* Work Details Layout */
+.work-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.company-name {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.work-location {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Current Role Highlighting */
+.work-card[data-institution="risk-analyst"] {
+    border-left-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--background-card) 0%, #f8f9fa 100%);
+}
+
+.work-card[data-institution="risk-analyst"] .training-provider {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Skills Summary Section */
+.skills-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.skill-category {
+    background-color: var(--background-card);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    border-left: 4px solid var(--accent-color);
+}
+
+.skill-category h4 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skill-category li {
+    color: var(--text-secondary);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-light);
+    position: relative;
+    padding-left: 1.2rem;
+}
+
+.skill-category li:last-child {
+    border-bottom: none;
+}
+
+/* Add bullet points to skill items */
+.skill-category li::before {
+    content: '▸';
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* Section Title Styling */
+.work-section .section-title {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-light);
+    padding-bottom: 0.5rem;
+}
+
+/* Responsive Design for Work Experience */
+@media (max-width: 768px) {
+    .work-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    
+    .skills-summary {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .skill-category {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .work-wrapper {
+        margin: 1rem auto 2rem;
+    }
+    
+    .work-card {
+        padding: 1.5rem;
+    }
+    
+    .skill-category {
+        padding: 1rem;
     }
 }

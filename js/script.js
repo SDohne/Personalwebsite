@@ -402,6 +402,257 @@ pdfViewerFrame.src = pdfPath;
         // In a production website, you might want to send error reports to a service
         // For now, we'll just log it and continue
     });
+
+    /*
+=================================================================
+EXPANDABLE TRAINING CARDS FUNCTIONALITY
+=================================================================
+Add this code to your existing script.js file, inside the main 
+DOMContentLoaded event listener (after the existing code sections)
+*/
+
+/*
+=================================================================
+EXPANDABLE INSTITUTION CARDS FUNCTIONALITY
+=================================================================
+This section handles the expand/collapse functionality for 
+institution training cards (Imperial College, Exeter, etc.)
+*/
+
+// Get all institution cards
+const institutionCards = document.querySelectorAll('.institution-card');
+
+// Function to toggle institution card expansion
+function toggleInstitutionCard(card) {
+    const modulesContent = card.querySelector('.modules-content');
+    const expandIcon = card.querySelector('.expand-icon i');
+    const isExpanded = card.classList.contains('expanded');
+    
+    if (isExpanded) {
+        // Collapse the card
+        card.classList.remove('expanded');
+        modulesContent.style.display = 'none';
+        expandIcon.style.transform = 'rotate(0deg)';
+        
+        // Smooth scroll to card top when collapsing
+        card.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+    } else {
+        // Expand the card
+        card.classList.add('expanded');
+        modulesContent.style.display = 'block';
+        expandIcon.style.transform = 'rotate(180deg)';
+        
+        // Optional: Close other expanded cards (uncomment if you want accordion behavior)
+        /*
+        institutionCards.forEach(otherCard => {
+            if (otherCard !== card && otherCard.classList.contains('expanded')) {
+                toggleInstitutionCard(otherCard);
+            }
+        });
+        */
+    }
+}
+
+// Add click event listeners to institution cards
+institutionCards.forEach(card => {
+    const institutionHeader = card.querySelector('.institution-header');
+    
+    if (institutionHeader) {
+        // Make the header clickable
+        institutionHeader.addEventListener('click', function(event) {
+            event.preventDefault();
+            toggleInstitutionCard(card);
+        });
+        
+        // Add keyboard accessibility
+        institutionHeader.setAttribute('tabindex', '0');
+        institutionHeader.setAttribute('role', 'button');
+        institutionHeader.setAttribute('aria-expanded', 'false');
+        
+        // Handle keyboard interactions
+        institutionHeader.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleInstitutionCard(card);
+                
+                // Update aria-expanded attribute
+                const isExpanded = card.classList.contains('expanded');
+                institutionHeader.setAttribute('aria-expanded', isExpanded);
+            }
+        });
+        
+        // Add hover effect for better user experience
+        institutionHeader.addEventListener('mouseenter', function() {
+            if (!card.classList.contains('expanded')) {
+                card.style.transform = 'translateY(-2px)';
+                card.style.boxShadow = '0 6px 20px var(--shadow-medium)';
+            }
+        });
+        
+        institutionHeader.addEventListener('mouseleave', function() {
+            if (!card.classList.contains('expanded')) {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 4px 15px var(--shadow-light)';
+            }
+        });
+    }
+});
+
+// Function to expand all institution cards (useful for debugging)
+function expandAllInstitutions() {
+    institutionCards.forEach(card => {
+        if (!card.classList.contains('expanded')) {
+            toggleInstitutionCard(card);
+        }
+    });
+}
+
+// Function to collapse all institution cards
+function collapseAllInstitutions() {
+    institutionCards.forEach(card => {
+        if (card.classList.contains('expanded')) {
+            toggleInstitutionCard(card);
+        }
+    });
+}
+
+// Make functions available for debugging (remove in production)
+window.trainingDebug = {
+    expandAll: expandAllInstitutions,
+    collapseAll: collapseAllInstitutions,
+    toggleCard: toggleInstitutionCard
+};
+
+    // ↓↓↓ ADD THE WORK EXPERIENCE JAVASCRIPT HERE ↓↓↓
+    
+    /*
+    =================================================================
+    WORK EXPERIENCE SPECIFIC FUNCTIONALITY
+    =================================================================
+    Additional functionality specific to work experience cards
+    */
+
+    // Function to track work experience interactions
+    function trackWorkExperienceInteraction(roleName, action) {
+        console.log(`Work Experience ${action}: ${roleName}`);
+        // You can add analytics tracking here
+    }
+
+    // Add specific functionality for work cards
+    const workCards = document.querySelectorAll('.work-card');
+
+    workCards.forEach(card => {
+        const roleName = card.querySelector('.training-name').textContent;
+        const institutionHeader = card.querySelector('.institution-header');
+        
+        if (institutionHeader) {
+            // Add work-specific tracking
+            institutionHeader.addEventListener('click', function() {
+                const isExpanding = !card.classList.contains('expanded');
+                const action = isExpanding ? 'expanded' : 'collapsed';
+                trackWorkExperienceInteraction(roleName, action);
+            });
+            
+            // Add special styling for current role
+            if (card.getAttribute('data-institution') === 'risk-analyst') {
+                card.classList.add('current-role');
+            }
+        }
+    });
+
+    // Add work experience functions to debug object
+    if (window.portfolioDebug) {
+        window.portfolioDebug.workExperience = {
+            expandAllWork: function() {
+                workCards.forEach(card => {
+                    if (!card.classList.contains('expanded')) {
+                        toggleInstitutionCard(card);
+                    }
+                });
+            },
+            collapseAllWork: function() {
+                workCards.forEach(card => {
+                    if (card.classList.contains('expanded')) {
+                        toggleInstitutionCard(card);
+                    }
+                });
+            }
+        };
+    }
+
+    // ↑↑↑ END OF WORK EXPERIENCE JAVASCRIPT ↑↑↑
+
+/*
+=================================================================
+SMOOTH ANIMATIONS FOR MODULE ITEMS
+=================================================================
+Add smooth animations when modules become visible
+*/
+
+// Animate module items when they become visible
+function animateModuleItems(card) {
+    const moduleItems = card.querySelectorAll('.module-item');
+    
+    moduleItems.forEach((item, index) => {
+        // Reset animation
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px)';
+        
+        // Stagger the animation for each module
+        setTimeout(() => {
+            item.style.transition = 'all 0.4s ease';
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+        }, index * 100); // 100ms delay between each item
+    });
+}
+
+// Update the toggle function to include animations
+const toggleInstitutionCardOriginal = toggleInstitutionCard;
+toggleInstitutionCard = function(card) {
+    const wasExpanded = card.classList.contains('expanded');
+    
+    // Call the original toggle function
+    toggleInstitutionCardOriginal(card);
+    
+    // If card was just expanded, animate the module items
+    if (!wasExpanded && card.classList.contains('expanded')) {
+        // Small delay to ensure the content is visible
+        setTimeout(() => {
+            animateModuleItems(card);
+        }, 50);
+    }
+};
+
+/*
+=================================================================
+ANALYTICS TRACKING FOR INSTITUTION INTERACTIONS
+=================================================================
+Track which institutions users are most interested in
+*/
+
+function trackInstitutionInteraction(institutionName, action) {
+    console.log(`Institution ${action}: ${institutionName}`);
+    // You can add Google Analytics or other tracking here
+    // Example: gtag('event', 'institution_' + action, { institution: institutionName });
+}
+
+// Add tracking to institution cards
+institutionCards.forEach(card => {
+    const institutionName = card.querySelector('.training-name').textContent;
+    const institutionHeader = card.querySelector('.institution-header');
+    
+    if (institutionHeader) {
+        institutionHeader.addEventListener('click', function() {
+            const isExpanding = !card.classList.contains('expanded');
+            const action = isExpanding ? 'expanded' : 'collapsed';
+            trackInstitutionInteraction(institutionName, action);
+        });
+    }
+});
     
     /*
     =================================================================

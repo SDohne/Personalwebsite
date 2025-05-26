@@ -15,21 +15,22 @@
     NAVIGATION BAR - Top section with name and navigation links
     =================================================================
     -->
-    <nav class="main-navigation">
-        <!-- Left side: Your name and tagline -->
-        <div class="logo-section">
-            <h1 class="main-name">Sebastian Dohne</h1>
-            <p class="main-tagline">Graduate Ecological Data Scientist - currently looking for work</p>
-        </div>
-        
-        <!-- Right side: Navigation menu -->
-        <div class="navigation-links">
-            <a href="#" class="nav-button" data-page="home">Portfolio</a>
-            <a href="#" class="nav-button" data-page="about">About</a>
-            <a href="#" class="nav-button" data-page="training">Training</a>
-            <a href="#" class="nav-button" data-page="publications">Publications</a>
-        </div>
-    </nav>
+<nav class="main-navigation">
+    <!-- Left side: Your name and tagline -->
+    <div class="logo-section">
+        <h1 class="main-name">Sebastian Dohne</h1>
+        <p class="main-tagline">Graduate Ecological Data Scientist - currently looking for work</p>
+    </div>
+    
+    <!-- Right side: Navigation menu -->
+    <div class="navigation-links">
+        <a href="#" class="nav-button" data-page="home">Portfolio</a>
+        <a href="#" class="nav-button" data-page="about">About</a>
+        <a href="#" class="nav-button" data-page="work-experience">Work Experience</a>
+        <a href="#" class="nav-button" data-page="training">Training</a>
+        <a href="#" class="nav-button" data-page="publications">Publications</a>
+    </div>
+</nav>
 
     <!-- 
     =================================================================
@@ -208,72 +209,258 @@
     TRAINING PAGE - Certifications and courses
     =================================================================
     -->
+<!-- 
+=================================================================
+TRAINING PAGE - Updated with expandable institution cards
+=================================================================
+-->
 <div id="training" class="page-content">
-        <div class="content-container">
-            <div class="training-wrapper">
-                <h2 class="page-title">Training & Certifications</h2>
-                
-                <!-- Academic Qualifications Section -->
-                <div class="training-section">
-                    <h3 class="section-title">Academic & Technical Training</h3>
-                    <div class="training-cards academic-training">
-                        <div class="training-card academic-card">
-                            <h3 class="training-name">Biological Computing Bootcamp</h3>
-                            <p class="training-description">Intensive training in R, Python, Bash, and Jupyter Notebooks for biological data analysis. Developed workflow best practices through collaborative GitHub projects.</p>
-                            <div class="training-info">
-                                <span class="training-date">2024</span>
-                                <span class="training-provider">Imperial College London</span>
+    <div class="content-container">
+        <div class="training-wrapper">
+            <h2 class="page-title">Training & Certifications</h2>
+            
+            <!-- Academic Qualifications Section -->
+            <div class="training-section">
+                <h3 class="section-title">Academic & Technical Training</h3>
+                <div class="training-cards academic-training">
+                    
+                    <!-- Imperial College London - Expandable Card -->
+                    <div class="training-card institution-card" data-institution="imperial">
+                        <div class="institution-header">
+                            <div class="institution-info">
+                                <h3 class="training-name">Imperial College London</h3>
+                                <p class="institution-description">MSc in Living Planet with Computational Methods in Ecology and Evolution</p>
+                                <div class="training-info">
+                                    <span class="training-date">2024 - Present</span>
+                                    <span class="training-provider">Predicted First Class Honours</span>
+                                </div>
+                            </div>
+                            <div class="expand-icon">
+                                <i class="fas fa-chevron-down"></i>
                             </div>
                         </div>
                         
-                        <div class="training-card academic-card">
-                            <h3 class="training-name">Advanced Statistical Modeling</h3>
-                            <p class="training-description">Comprehensive training in statistical analysis including maximum likelihood estimation, Bayesian inference, and machine learning applications in ecology.</p>
-                            <div class="training-info">
-                                <span class="training-date">2024</span>
-                                <span class="training-provider">Imperial College London</span>
+                        <!-- Expandable Modules Section -->
+                        <div class="modules-content" style="display: none;">
+                            <div class="modules-grid">
+                                <div class="module-item">
+                                    <h4 class="module-title">Biological Computing Bootcamp</h4>
+                                    <p class="module-description">Intensive training in R, Python, Bash, and Jupyter Notebooks for biological data analysis. Developed workflow best practices through collaborative GitHub projects.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">Advanced Statistical Modeling</h4>
+                                    <p class="module-description">Comprehensive training in statistical analysis including maximum likelihood estimation, Bayesian inference, and machine learning applications in ecology.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">High Performance Computing</h4>
+                                    <p class="module-description">Gained practical experience with R scripting, parallel computing, cluster job scheduling (PBS), and workflow optimization for large-scale ecological simulations.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">GIS & Bioinformatics</h4>
+                                    <p class="module-description">Developed skills in GIS using R, bioinformatics, and sequence alignment using tools like NCBI and ORF Finder for ecological and evolutionary data analysis.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">Statistics in R & Mathematical Modelling</h4>
+                                    <p class="module-description">Practical experience in statistical analysis and mathematical modelling to interpret ecological and evolutionary data using maximum likelihood estimation and Bayesian inference.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">Advanced Data Science</h4>
+                                    <p class="module-description">Covered foundational machine learning for model fitting and data analysis in ecological contexts.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- University of Exeter - Expandable Card -->
+                    <div class="training-card institution-card" data-institution="exeter">
+                        <div class="institution-header">
+                            <div class="institution-info">
+                                <h3 class="training-name">University of Exeter</h3>
+                                <p class="institution-description">BSc in Conservation Biology and Ecology</p>
+                                <div class="training-info">
+                                    <span class="training-date">2019 - 2022</span>
+                                    <span class="training-provider">Upper Second-Class Honours</span>
+                                </div>
+                            </div>
+                            <div class="expand-icon">
+                                <i class="fas fa-chevron-down"></i>
                             </div>
                         </div>
                         
-                        <div class="training-card academic-card">
-                            <h3 class="training-name">High Performance Computing</h3>
-                            <p class="training-description">Gained practical experience with R scripting, parallel computing, cluster job scheduling (PBS), and workflow optimization for large-scale ecological simulations.</p>
-                            <div class="training-info">
-                                <span class="training-date">2024</span>
-                                <span class="training-provider">Imperial College London</span>
-                            </div>
-                        </div>
-                        
-                        <div class="training-card academic-card">
-                            <h3 class="training-name">GIS & Bioinformatics</h3>
-                            <p class="training-description">Developed skills in GIS using R, bioinformatics, and sequence alignment using tools like NCBI and ORF Finder for ecological and evolutionary data analysis.</p>
-                            <div class="training-info">
-                                <span class="training-date">2024</span>
-                                <span class="training-provider">Imperial College London</span>
+                        <!-- Expandable Modules Section -->
+                        <div class="modules-content" style="display: none;">
+                            <div class="modules-grid">
+                                <div class="module-item">
+                                    <h4 class="module-title">Research Project</h4>
+                                    <p class="module-description">"Analysis of the Effects of Artificial Light on Parental Behaviour of Nesting Herring Gulls" - Literature review, statistical analysis in R, and behavioral data recording.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">Conservation Principles</h4>
+                                    <p class="module-description">Core principles of biodiversity conservation, habitat management, and species protection strategies.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">Ecological Statistics</h4>
+                                    <p class="module-description">Statistical methods for analyzing ecological data, including ANOVA, regression analysis, and multivariate statistics.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">Field Ecology Methods</h4>
+                                    <p class="module-description">Hands-on experience with field sampling techniques, species identification, and data collection protocols.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Professional Certifications Section -->
-                <div class="training-section">
-                    <h3 class="section-title">Professional Certifications</h3>
-                    <div class="training-cards professional-training">
-                        <div class="training-card">
-                            <h3 class="training-name">AgilePM Certification</h3>
-                            <p class="training-description">Project management certification focusing on agile methodologies and iterative development processes.</p>
-                            <div class="training-info">
-                                <span class="training-date">2023</span>
-                                <span class="training-provider">APMG International</span>
+            </div>
+            
+            <!-- Professional Certifications Section -->
+            <div class="training-section">
+                <h3 class="section-title">Professional Certifications</h3>
+                <div class="training-cards professional-training">
+                    <div class="training-card">
+                        <h3 class="training-name">AgilePM Certification</h3>
+                        <p class="training-description">Project management certification focusing on agile methodologies and iterative development processes.</p>
+                        <div class="training-info">
+                            <span class="training-date">2023</span>
+                            <span class="training-provider">APMG International</span>
+                        </div>
+                    </div>
+                    
+                    <div class="training-card">
+                        <h3 class="training-name">Emergency First Aid at Work</h3>
+                        <p class="training-description">Certified in emergency first aid procedures and workplace safety protocols.</p>
+                        <div class="training-info">
+                            <span class="training-date">February 2023</span>
+                            <span class="training-provider">Red Cross</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ <!-- 
+
+
+=================================================================
+WORK EXPERIENCE PAGE - Add this after your training page section
+=================================================================
+-->
+<div id="work-experience" class="page-content">
+    <div class="content-container">
+        <div class="work-wrapper">
+            <h2 class="page-title">Work Experience</h2>
+            
+            <!-- Professional Experience Section -->
+            <div class="work-section">
+                <h3 class="section-title">Professional Experience</h3>
+                <div class="work-cards">
+                    
+                    <!-- Current Role: Risk Analyst -->
+                    <div class="work-card institution-card" data-institution="risk-analyst">
+                        <div class="institution-header">
+                            <div class="institution-info">
+                                <h3 class="training-name">Risk Analyst</h3>
+                                <p class="institution-description">Biomathematical Risk Research Department, Epidemiological Sciences</p>
+                                <div class="work-details">
+                                    <span class="company-name">Animal and Plant Health Agency</span>
+                                    <span class="work-location">New Haw, UK</span>
+                                </div>
+                                <div class="training-info">
+                                    <span class="training-date">2023 – Present</span>
+                                    <span class="training-provider">Current Role</span>
+                                </div>
+                            </div>
+                            <div class="expand-icon">
+                                <i class="fas fa-chevron-down"></i>
                             </div>
                         </div>
                         
-                        <div class="training-card">
-                            <h3 class="training-name">Emergency First Aid at Work</h3>
-                            <p class="training-description">Certified in emergency first aid procedures and workplace safety protocols.</p>
-                            <div class="training-info">
-                                <span class="training-date">February 2023</span>
-                                <span class="training-provider">Red Cross</span>
+                        <!-- Expandable Job Details Section -->
+                        <div class="modules-content" style="display: none;">
+                            <div class="modules-grid">
+                                <div class="module-item">
+                                    <h4 class="module-title">Risk Assessment & Analysis</h4>
+                                    <p class="module-description">Develop qualitative risk assessments and support data collection for quantitative risk assessments. Projects inform UK policy and trade by assessing risks to animal health due to trade in various commodities and respond to perceived threats from pathogen incursions affecting livestock, pets, and wildlife.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">Scientific Literature Review & Reporting</h4>
+                                    <p class="module-description">Perform effective literature reviews for inbound projects and scientific report writing. Effectively convey qualitative and quantitative data for risk assessment and provide internal review of projects for quality assurance.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">Stakeholder Communication & Project Management</h4>
+                                    <p class="module-description">Coordinate with colleagues, stakeholders, APHA and DEFRA staff. Organize meetings and presentations to discuss project parameters and updates. Liaise with parties holding information necessary for risk assessment including policymakers, collaborators, and specialists.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">Research & Professional Development</h4>
+                                    <p class="module-description">Contribute to future project proposals and attend scientific conferences and seminars. Network with members of other organizations and academic institutions to spread awareness of departmental work and facilitate collaborations.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">Key Achievements</h4>
+                                    <p class="module-description">• Presented poster at SVEPM conference in Uppsala, Sweden on Echinococcus Multilocularis surveillance methods<br>• Named author for WOAH project guidelines to reduce risks in wild animal trade<br>• Provide expertise during notifiable disease outbreaks</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">Project Types Managed</h4>
+                                    <p class="module-description">Risk and economic analyses, Hazard identifications, policy-informing assessments for national and international animal health and food safety issues, reactive threat response projects.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Previous Role: Scientific Assistant -->
+                    <div class="work-card institution-card" data-institution="scientific-assistant">
+                        <div class="institution-header">
+                            <div class="institution-info">
+                                <h3 class="training-name">Scientific Assistant</h3>
+                                <p class="institution-description">CFT/IFAT Laboratory, Serology Department</p>
+                                <div class="work-details">
+                                    <span class="company-name">Animal and Plant Health Agency</span>
+                                    <span class="work-location">New Haw, UK</span>
+                                </div>
+                                <div class="training-info">
+                                    <span class="training-date">2022 – 2023</span>
+                                    <span class="training-provider">Laboratory Role</span>
+                                </div>
+                            </div>
+                            <div class="expand-icon">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Expandable Job Details Section -->
+                        <div class="modules-content" style="display: none;">
+                            <div class="modules-grid">
+                                <div class="module-item">
+                                    <h4 class="module-title">Diagnostic Testing</h4>
+                                    <p class="module-description">Performed various diagnostic tests for zoonotic diseases including PCR, iELISA, CFT, and IFAT on submitted samples. Maintained and updated Standard Operating Procedures (SOPs) for diagnostic tests to ensure accuracy and compliance.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">Laboratory Coordination</h4>
+                                    <p class="module-description">Communicated and coordinated between laboratories and departments to ensure SOPs were followed. Suggested improvements to optimize time-effective delivery of client sample results while maintaining quality standards.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">Outbreak Response</h4>
+                                    <p class="module-description">Worked on bird flu outbreak response, preparing suspected positive samples for real-time PCR. Demonstrated consistency under time pressures and sudden high short-term workloads during disease outbreak scenarios.</p>
+                                </div>
+                                
+                                <div class="module-item">
+                                    <h4 class="module-title">Client Communication</h4>
+                                    <p class="module-description">Worked in front-facing office performing professional customer communication. Managed client inquiries and provided updates on sample processing and results delivery timelines.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -281,8 +468,8 @@
             </div>
         </div>
     </div>
-
- <!-- 
+</div>
+<!-- 
 =================================================================
 PUBLICATIONS PAGE - Research publications and contributions
 =================================================================
