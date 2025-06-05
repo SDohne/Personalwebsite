@@ -2,6 +2,12 @@
 
 A modern, responsive portfolio website showcasing ecological data science projects, work experience, and academic background. Built with vanilla HTML, CSS, and JavaScript featuring smooth animations and interactive expandable content sections.
 
+to be added:
+
+key techinical skills list on front page
+
+short couple line self introduction
+
 ## 🌟 Features
 
 - **Single Page Application (SPA)** - Smooth navigation between sections without page reloads

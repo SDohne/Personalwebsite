@@ -10,6 +10,8 @@ MAIN FEATURES:
 - PDF document viewing in modal
 - GitHub link functionality for each project
 - Expandable cards (training, work experience, projects)
+- Row synchronization for project cards
+- Technical skills section interactivity
 - Smooth animations and transitions
 - Keyboard accessibility
 - Mobile-responsive interactions
@@ -55,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     =================================================================
     NAVIGATION FUNCTIONALITY
     =================================================================
-    This section handles switching between different pages (Portfolio, About, etc.)
+    This section handles switching between different pages (Portfolio, Work Experience, etc.)
     without actually reloading the webpage - creating a smooth user experience.
     */
     
@@ -103,14 +105,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Handle direct links to specific pages (e.g., yoursite.com#about)
+    // Handle direct links to specific pages (e.g., yoursite.com#work-experience)
     // This runs when someone visits a direct link to a specific page
     function handleInitialPageLoad() {
         const urlHash = window.location.hash.substring(1); // Remove the # symbol
-        if (urlHash && document.getElementById(urlHash)) {
+        const validPages = ['home', 'work-experience', 'training', 'publications'];
+        
+        if (urlHash && validPages.includes(urlHash) && document.getElementById(urlHash)) {
             switchToPage(urlHash);
         } else {
-            // If no valid hash, make sure home page is shown
+            // If no valid hash or invalid page, make sure home page is shown
             switchToPage('home');
         }
     }
@@ -210,6 +214,68 @@ document.addEventListener('DOMContentLoaded', function() {
     
     /*
     =================================================================
+    ROW SYNCHRONIZATION FUNCTIONALITY
+    =================================================================
+    Functions to make project cards in the same row expand together
+    */
+    
+    // Function to get cards that are on the same row
+    function getCardsInSameRow(targetCard, allCards) {
+        const targetRect = targetCard.getBoundingClientRect();
+        const targetRow = Math.floor(targetRect.top);
+        const tolerance = 50; // Increased tolerance for better row detection
+        
+        return Array.from(allCards).filter(card => {
+            const cardRect = card.getBoundingClientRect();
+            const cardRow = Math.floor(cardRect.top);
+            return Math.abs(targetRow - cardRow) <= tolerance;
+        });
+    }
+
+    // Function to expand all cards in the same row
+    function expandCardsInRow(targetCard, allCards) {
+        const rowCards = getCardsInSameRow(targetCard, allCards);
+        
+        // Expand all cards in the row
+        rowCards.forEach(card => {
+            if (!card.classList.contains('expanded')) {
+                const modulesContent = card.querySelector('.modules-content');
+                const expandIcon = card.querySelector('.expand-icon i');
+                
+                if (modulesContent && expandIcon) {
+                    card.classList.add('expanded');
+                    modulesContent.style.display = 'block';
+                    expandIcon.style.transform = 'rotate(180deg)';
+                }
+            }
+        });
+        
+        return rowCards;
+    }
+
+    // Function to collapse all cards in the same row
+    function collapseCardsInRow(targetCard, allCards) {
+        const rowCards = getCardsInSameRow(targetCard, allCards);
+        
+        // Collapse all cards in the row
+        rowCards.forEach(card => {
+            if (card.classList.contains('expanded')) {
+                const modulesContent = card.querySelector('.modules-content');
+                const expandIcon = card.querySelector('.expand-icon i');
+                
+                if (modulesContent && expandIcon) {
+                    card.classList.remove('expanded');
+                    modulesContent.style.display = 'none';
+                    expandIcon.style.transform = 'rotate(0deg)';
+                }
+            }
+        });
+        
+        return rowCards;
+    }
+    
+    /*
+    =================================================================
     EXPANDABLE INSTITUTION CARDS FUNCTIONALITY
     =================================================================
     This section handles the expand/collapse functionality for 
@@ -225,22 +291,54 @@ document.addEventListener('DOMContentLoaded', function() {
         const expandIcon = card.querySelector('.expand-icon i');
         const isExpanded = card.classList.contains('expanded');
         
-        if (isExpanded) {
-            // Collapse the card
-            card.classList.remove('expanded');
-            modulesContent.style.display = 'none';
-            expandIcon.style.transform = 'rotate(0deg)';
+        // For project cards in the portfolio grid, handle row synchronization
+        if (card.closest('.projects-grid')) {
+            const allProjectCards = document.querySelectorAll('.projects-grid .project-card');
             
-            // Smooth scroll to card top when collapsing
-            card.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
-            });
+            if (isExpanded) {
+                // Collapse all cards in the row
+                collapseCardsInRow(card, allProjectCards);
+                
+                // Smooth scroll to card top when collapsing
+                card.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            } else {
+                // Expand all cards in the row
+                const expandedCards = expandCardsInRow(card, allProjectCards);
+                
+                // Add staggered animations for the newly expanded cards
+                setTimeout(() => {
+                    expandedCards.forEach((expandedCard, index) => {
+                        if (expandedCard !== card) { // Don't re-animate the clicked card
+                            setTimeout(() => {
+                                animateModuleItems(expandedCard);
+                                animateProjectActions(expandedCard);
+                            }, index * 100);
+                        }
+                    });
+                }, 100);
+            }
         } else {
-            // Expand the card
-            card.classList.add('expanded');
-            modulesContent.style.display = 'block';
-            expandIcon.style.transform = 'rotate(180deg)';
+            // For non-project cards (work experience, training), use individual toggle
+            if (isExpanded) {
+                // Collapse the card
+                card.classList.remove('expanded');
+                modulesContent.style.display = 'none';
+                expandIcon.style.transform = 'rotate(0deg)';
+                
+                // Smooth scroll to card top when collapsing
+                card.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            } else {
+                // Expand the card
+                card.classList.add('expanded');
+                modulesContent.style.display = 'block';
+                expandIcon.style.transform = 'rotate(180deg)';
+            }
         }
     }
     
@@ -410,6 +508,66 @@ publicationCards.forEach(card => {
     
     /*
     =================================================================
+    TECHNICAL SKILLS SECTION INTERACTIVITY
+    =================================================================
+    Add interactive elements to the skills section
+    */
+    
+    // Add hover effects and click interactions for skill tags
+    const skillTags = document.querySelectorAll('.skill-tag');
+    
+    skillTags.forEach(function(tag) {
+        // Add click interaction to skill tags for potential future filtering
+        tag.addEventListener('click', function() {
+            const skillName = tag.textContent;
+            console.log('Skill clicked:', skillName);
+            // Future: Could implement project filtering by skill
+        });
+        
+        // Add keyboard accessibility
+        tag.setAttribute('tabindex', '0');
+        tag.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                tag.click();
+            }
+        });
+    });
+    
+    // Add animation to skills section when it comes into view
+    const skillsSection = document.querySelector('.technical-skills-section');
+    if (skillsSection && window.IntersectionObserver) {
+        const skillsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    // Animate skill categories one by one
+                    const categories = entry.target.querySelectorAll('.skill-category');
+                    categories.forEach((category, index) => {
+                        setTimeout(() => {
+                            category.style.opacity = '1';
+                            category.style.transform = 'translateY(0)';
+                        }, index * 200);
+                    });
+                    skillsObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.3
+        });
+        
+        // Set initial state and start observing
+        const skillCategories = skillsSection.querySelectorAll('.skill-category');
+        skillCategories.forEach(category => {
+            category.style.opacity = '0';
+            category.style.transform = 'translateY(20px)';
+            category.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        
+        skillsObserver.observe(skillsSection);
+    }
+    
+    /*
+    =================================================================
     ENHANCED ANIMATIONS FOR EXPANDABLE CARDS
     =================================================================
     Special animations when cards are expanded
@@ -505,7 +663,7 @@ publicationCards.forEach(card => {
         
         // Find all elements that should have scroll animations
         const elementsToAnimate = document.querySelectorAll(
-            '.project-card, .training-card, .publication-card, .about-layout, .work-card'
+            '.project-card, .training-card, .publication-card, .work-card'
         );
         
         // Set up initial animation state and start observing each element
@@ -522,10 +680,10 @@ publicationCards.forEach(card => {
     
     /*
     =================================================================
-    EXTERNAL LINK HANDLING
+    EXTERNAL LINK HANDLING AND CONTACT FUNCTIONALITY
     =================================================================
     This section ensures external links (like social media) open in new tabs
-    so users don't navigate away from your portfolio accidentally.
+    and handles contact link interactions.
     */
     
     // Find all external links (links that go to other websites)
@@ -537,6 +695,16 @@ publicationCards.forEach(card => {
             link.setAttribute('target', '_blank'); // Open in new tab
             link.setAttribute('rel', 'noopener noreferrer'); // Security best practice
         }
+    });
+    
+    // Add click tracking for contact links
+    const contactLinks = document.querySelectorAll('.contact-link');
+    contactLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            const linkType = link.querySelector('span').textContent.toLowerCase();
+            console.log('Contact link clicked:', linkType);
+            // You can add analytics tracking here
+        });
     });
     
     /*
@@ -553,8 +721,9 @@ publicationCards.forEach(card => {
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function() {
-            // Perform any necessary layout recalculations here
-            // Currently, CSS Grid handles most responsive behavior automatically
+            // On resize, we don't need to do anything special for row synchronization
+            // The CSS grid will handle the responsive layout automatically
+            // and the expanded state will be preserved
             console.log('Window resized - layout updated');
         }, 250);
     });
@@ -688,7 +857,7 @@ publicationCards.forEach(card => {
     
     // Log that everything loaded successfully (remove this in production)
     console.log('Portfolio website initialized successfully!');
-    console.log('Features loaded: Navigation, PDF viewer, GitHub links, Expandable cards, Animations, Accessibility');
+    console.log('Features loaded: Navigation, PDF viewer, GitHub links, Expandable cards, Row synchronization, Animations, Accessibility, Skills section, Contact integration');
     
     // Make functions available globally for testing and debugging
     window.portfolioDebug = {
@@ -732,14 +901,83 @@ publicationCards.forEach(card => {
             });
         },
         collapseAllProjects: function() {
-            projectCards.forEach(card => {
+            const allProjectCards = document.querySelectorAll('.projects-grid .project-card');
+            allProjectCards.forEach(card => {
                 if (card.classList.contains('expanded')) {
-                    toggleInstitutionCard(card);
+                    const modulesContent = card.querySelector('.modules-content');
+                    const expandIcon = card.querySelector('.expand-icon i');
+                    
+                    card.classList.remove('expanded');
+                    if (modulesContent) modulesContent.style.display = 'none';
+                    if (expandIcon) expandIcon.style.transform = 'rotate(0deg)';
                 }
             });
         },
         filterByCategory: filterProjectsByCategory,
         searchProjects: searchProjects,
+        
+        // Row synchronization functions
+        expandRowByCard: function(cardIndex) {
+            const allProjectCards = document.querySelectorAll('.projects-grid .project-card');
+            const targetCard = allProjectCards[cardIndex];
+            if (targetCard) {
+                expandCardsInRow(targetCard, allProjectCards);
+            }
+        },
+        collapseRowByCard: function(cardIndex) {
+            const allProjectCards = document.querySelectorAll('.projects-grid .project-card');
+            const targetCard = allProjectCards[cardIndex];
+            if (targetCard) {
+                collapseCardsInRow(targetCard, allProjectCards);
+            }
+        },
+        getRowInfo: function() {
+            const allProjectCards = document.querySelectorAll('.projects-grid .project-card');
+            const rows = [];
+            const processedCards = new Set();
+            
+            allProjectCards.forEach((card, index) => {
+                if (!processedCards.has(card)) {
+                    const rowCards = getCardsInSameRow(card, allProjectCards);
+                    rowCards.forEach(rowCard => processedCards.add(rowCard));
+                    rows.push({
+                        rowIndex: rows.length,
+                        cardCount: rowCards.length,
+                        cardIndices: rowCards.map(rowCard => Array.from(allProjectCards).indexOf(rowCard)),
+                        expandedCount: rowCards.filter(rowCard => rowCard.classList.contains('expanded')).length
+                    });
+                }
+            });
+            
+            console.table(rows);
+            return rows;
+        },
+        
+        // Skills section functions
+        animateSkills: function() {
+            const skillTags = document.querySelectorAll('.skill-tag');
+            skillTags.forEach((tag, index) => {
+                setTimeout(() => {
+                    tag.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        tag.style.transform = 'scale(1)';
+                    }, 200);
+                }, index * 50);
+            });
+        },
+        
+        // Contact functions
+        getContactInfo: function() {
+            const contactLinks = document.querySelectorAll('.contact-link');
+            const contacts = {};
+            contactLinks.forEach(link => {
+                const type = link.querySelector('span').textContent;
+                const href = link.getAttribute('href');
+                contacts[type] = href;
+            });
+            console.table(contacts);
+            return contacts;
+        },
         
         // Utility functions
         getProjectStats: function() {
@@ -761,6 +999,31 @@ publicationCards.forEach(card => {
             
             console.table(stats);
             return stats;
+        },
+        
+        // Page validation
+        validateNavigation: function() {
+            const validPages = ['home', 'work-experience', 'training', 'publications'];
+            const navButtons = document.querySelectorAll('.nav-button');
+            const issues = [];
+            
+            navButtons.forEach(button => {
+                const targetPage = button.getAttribute('data-page');
+                if (!validPages.includes(targetPage)) {
+                    issues.push(`Invalid navigation target: ${targetPage}`);
+                }
+                if (!document.getElementById(targetPage)) {
+                    issues.push(`Missing page element: ${targetPage}`);
+                }
+            });
+            
+            if (issues.length === 0) {
+                console.log('Navigation validation passed ✓');
+            } else {
+                console.warn('Navigation issues found:', issues);
+            }
+            
+            return issues;
         }
     };
     
